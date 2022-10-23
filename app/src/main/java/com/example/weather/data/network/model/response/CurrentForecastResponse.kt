@@ -25,7 +25,10 @@ data class CurrentForecastResponse(
     val winder: WinderInfo,
 
     @SerializedName("rain")
-    val rain: RainCurrentInfo,
+    val rain: RainInfo? = null,
+
+    @SerializedName("snow")
+    val snow: SnowInfo? = null,
 
     @SerializedName("clouds")
     val clouds: CloudsInfo,
@@ -34,7 +37,7 @@ data class CurrentForecastResponse(
     val timeOfData: Long,
 
     @SerializedName("sys")
-    val sys: SysInfo,
+    val sys: CurrentSysInfo,
 
     @SerializedName("timezone")
     val timezone: Int,

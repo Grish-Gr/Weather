@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.weather.data.network.GeocodingService
 import com.example.weather.data.network.WeatherService
 import com.example.weather.databinding.ActivityMainBinding
+import com.example.weather.model.interfaces.WeatherRepository
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     @Inject lateinit var geocodingService: GeocodingService
     @Inject lateinit var weatherService: WeatherService
+    @Inject lateinit var weatherRepository: WeatherRepository
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +32,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.clickService.setOnClickListener {
             lifecycleScope.launch {
-                val forecast = weatherService.getCurrentForecast(nameCity = "Екатеринбург", language = "ru")
+                Log.e("TAG", weatherRepository.getCurrentForecast(nameCity = "К").toString())
+                Log.e("TAG", weatherRepository.getStepForecast(nameCity = "Екатеринбург", count = 10).toString())
                 /*forecast.listForecast.map {
                     Log.e("TAG", "${it.textDate}: minTemp - ${it.infoTemperatures.minTemperature}; maxTemp - ${it.infoTemperatures.maxTemperature}")
                     it.weather.map { info -> Log.e("TAG", info.description) }

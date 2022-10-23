@@ -26,7 +26,10 @@ data class StepForecast(
     val probabilityOfPrecipitation: Float,
 
     @SerializedName("rain")
-    val rain: RainInfo,
+    val rain: RainInfo? = null,
+
+    @SerializedName("snow")
+    val snow: SnowInfo? = null,
 
     @SerializedName("sys")
     val sys: SysInfo,

@@ -1,6 +1,5 @@
 package com.example.weather.di
 
-import androidx.lifecycle.ViewModel
 import com.example.weather.data.network.GeocodingService
 import com.example.weather.data.network.WeatherService
 import dagger.Module
@@ -15,13 +14,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object ServiceModule {
+internal object ServiceModule {
 
     private const val BASE_URL = "http://api.openweathermap.org"
     private const val API_KEY = "c750f6c1fbc97349d8e7e197f08487a6"
 
     @Provides
-    @Singleton
     fun provideHttpClient(): OkHttpClient{
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
