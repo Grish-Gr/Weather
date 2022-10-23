@@ -18,7 +18,7 @@ class MapperCurrentForecast: Mapper<CurrentForecastResponse, CurrentForecastData
             pressure = source.infoTemperature.pressure,
             humidity = source.infoTemperature.humidity,
             descriptionWeather = source.listWeather.first().description,
-            urlIconWeather = source.listWeather.first().idIconWeather,
+            urlIconWeather = getUrlByIcon(source.listWeather.first().idIconWeather),
             cloudiness = source.clouds.cloudiness
         )
         val sunTimeData = SunTimeData(
@@ -32,4 +32,7 @@ class MapperCurrentForecast: Mapper<CurrentForecastResponse, CurrentForecastData
             currentDate = source.timeOfData
         )
     }
+
+    private fun getUrlByIcon(idIcon: String): String =
+        "http://openweathermap.org/img/wn/${idIcon}@2x.png"
 }

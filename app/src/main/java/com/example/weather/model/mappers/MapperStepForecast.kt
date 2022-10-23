@@ -18,7 +18,7 @@ class MapperStepForecast: Mapper<StepForecast, StepForecastData> {
                 pressure = infoTemperatures.pressure,
                 humidity = infoTemperatures.humidity,
                 descriptionWeather = weather.first().description,
-                urlIconWeather = weather.first().idIconWeather,
+                urlIconWeather = getUrlByIcon(weather.first().idIconWeather),
                 cloudiness = clouds.cloudiness
             )
             return StepForecastData(
@@ -29,4 +29,6 @@ class MapperStepForecast: Mapper<StepForecast, StepForecastData> {
         }
     }
 
+    private fun getUrlByIcon(idIcon: String): String =
+        "http://openweathermap.org/img/wn/${idIcon}@2x.png"
 }
