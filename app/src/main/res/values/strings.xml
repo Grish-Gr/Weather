@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Weather</string>
+    <string name="ex_time">12:00</string>
+    <string name="description_step_weather_image">icon_step_weather</string>
+    <string name="ex_temperature">10°ᶜ</string>
+    <string name="ex_min_temperature">9.1°ᶜ</string>
+    <string name="ex_max_temperature">10.0°ᶜ</string>
+    <string name="ex_direction_wind">SSE</string>
+    <string name="ex_pressure">1015 hPa</string>
+    <string name="description_pressure">Atmospheric pressure</string>
+    <string name="ex_humidity">64%</string>
+    <string name="ex_cloudiness">90%</string>
+    <string name="description_cloudiness">Cloudiness</string>
+    <string name="description_visibility">Visibility</string>
+    <string name="description_direction_wind">Direction wind</string>
+    <string name="description_feels_like">Feels like</string>
+    <string name="ex_visibility">6 km</string>
+    <string name="description_humidity">Humidity</string>
+    <string name="ex_location">Moscow</string>
+    <string name="description_image_settings">icon_settings</string>
 </resources>
