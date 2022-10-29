@@ -2,6 +2,7 @@ package com.example.weather.model.mappers
 
 import com.example.weather.data.network.model.response.StepForecast
 import com.example.weather.model.data.StepForecastData
+import com.example.weather.model.data.StepWeatherData
 import com.example.weather.model.data.TemperatureData
 import com.example.weather.model.data.WeatherData
 
@@ -14,12 +15,11 @@ class MapperStepForecast: Mapper<StepForecast, StepForecastData> {
                 minTemperature = infoTemperatures.minTemperature,
                 maxTemperature = infoTemperatures.maxTemperature
             )
-            val weatherData = WeatherData(
-                pressure = infoTemperatures.pressure,
-                humidity = infoTemperatures.humidity,
+            val weatherData = StepWeatherData(
                 descriptionWeather = weather.first().description,
                 urlIconWeather = getUrlByIcon(weather.first().idIconWeather),
-                cloudiness = clouds.cloudiness
+                urlIconWeatherHeight = getUrlByIconHeight(weather.first().idIconWeather)
+
             )
             return StepForecastData(
                 temperature = temperatureData,
@@ -31,4 +31,7 @@ class MapperStepForecast: Mapper<StepForecast, StepForecastData> {
 
     private fun getUrlByIcon(idIcon: String): String =
         "http://openweathermap.org/img/wn/${idIcon}@2x.png"
+
+    private fun getUrlByIconHeight(idIcon: String): String =
+        "http://openweathermap.org/img/wn/${idIcon}@4x.png"
 }

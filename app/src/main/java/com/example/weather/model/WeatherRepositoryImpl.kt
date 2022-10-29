@@ -6,12 +6,9 @@ import com.example.weather.data.network.model.response.CurrentForecastResponse
 import com.example.weather.data.network.model.response.StepForecast
 import com.example.weather.model.data.CurrentForecastData
 import com.example.weather.model.data.StepForecastData
-import com.example.weather.model.data.TemperatureData
-import com.example.weather.model.data.WeatherData
 import com.example.weather.model.interfaces.WeatherRepository
 import com.example.weather.model.mappers.Mapper
-import com.example.weather.model.mappers.MapperCurrentForecast
-import com.example.weather.model.mappers.MapperStepForecast
+import java.util.*
 import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(
@@ -23,21 +20,28 @@ class WeatherRepositoryImpl @Inject constructor(
     override suspend fun getCurrentForecast(
         latitude: Float,
         longitude: Float
-    ): Result<CurrentForecastData> {
+    ): ResultOf<CurrentForecastData> {
         return try{
-            Result.Success(mapperCurrentForecast.mapping(weatherService.getCurrentForecast(latitude, longitude)))
+            ResultOf.Success(mapperCurrentForecast
+                .mapping(weatherService.getCurrentForecast(
+                    latitude = latitude,
+                    longitude = longitude,
+                    language = Locale.getDefault().language)))
         } catch (ex: Exception){
             Log.e(this::class.toString(), ex.toString())
-            Result.Error(ex.toString())
+            ResultOf.Error(ex.toString())
         }
     }
 
-    override suspend fun getCurrentForecast(nameCity: String): Result<CurrentForecastData> {
+    override suspend fun getCurrentForecast(nameCity: String): ResultOf<CurrentForecastData> {
         return try {
-            Result.Success(mapperCurrentForecast.mapping(weatherService.getCurrentForecast(nameCity)))
+            ResultOf.Success(mapperCurrentForecast
+                .mapping(weatherService.getCurrentForecast(
+                    nameCity = nameCity,
+                    language = Locale.getDefault().language)))
         } catch (ex: Exception){
             Log.e(this::class.toString(), ex.toString())
-            Result.Error(ex.toString())
+            ResultOf.Error(ex.toString())
         }
     }
 
@@ -45,29 +49,34 @@ class WeatherRepositoryImpl @Inject constructor(
         latitude: Float,
         longitude: Float,
         count: Int
-    ): Result<List<StepForecastData>>{
+    ): ResultOf<List<StepForecastData>>{
         return try {
-            Result.Success(weatherService.getForecastThreeHours(
+            ResultOf.Success(weatherService.getForecastThreeHours(
                 latitude = latitude,
                 longitude = longitude,
-                count = count
+                count = count,
+                language = Locale.getDefault().language
             ).listForecast.map { stepForecast ->
                 mapperStepForecast.mapping(stepForecast)
             })
         } catch (ex: Exception){
             Log.e(this::class.simpleName, ex.toString())
-            Result.Error(ex.toString())
+            ResultOf.Error(ex.toString())
         }
     }
 
-    override suspend fun getStepForecast(nameCity: String, count: Int): Result<List<StepForecastData>> {
+    override suspend fun getStepForecast(nameCity: String, count: Int): ResultOf<List<StepForecastData>> {
         return try {
-            Result.Success(weatherService.getForecastThreeHours(nameCity, count).listForecast.map { stepForecast ->
+            ResultOf.Success(weatherService.getForecastThreeHours(
+                nameCity = nameCity,
+                count = count,
+                language = Locale.getDefault().language
+            ).listForecast.map { stepForecast ->
                 mapperStepForecast.mapping(stepForecast)
             })
         } catch (ex: Exception){
             Log.e(WeatherRepositoryImpl::class.simpleName, ex.toString())
-            Result.Error(ex.toString())
+            ResultOf.Error(ex.toString())
         }
     }
 }

@@ -3,19 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="4dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_current_weather"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F4F2C5">
+        android:background="#C2FFFD">
 
         <TextView
             android:id="@+id/current_temperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="10°ᶜ"
+            tools:text="10°ᶜ"
             android:textSize="72sp"
             android:gravity="center"
             android:layout_margin="4dp"
@@ -28,39 +28,52 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="16dp"
-            android:text="10 Oct, Saturday"
+            tools:text="10 Oct, Saturday"
             android:layout_margin="8dp"
             app:layout_constraintTop_toBottomOf="@id/current_temperature"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/image_current_weather"/>
+            app:layout_constraintEnd_toStartOf="@id/divider_curr_weather"/>
 
         <TextView
             android:id="@+id/current_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="10:12"
+            tools:text="10:12"
             android:textSize="32sp"
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/image_current_weather"
+            app:layout_constraintEnd_toStartOf="@id/divider_curr_weather"
             app:layout_constraintTop_toBottomOf="@id/current_date"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_curr_weather"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/image_current_weather"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:src="@drawable/default_icon_weather"
-            app:layout_constraintTop_toBottomOf="@id/current_temperature"
+            android:layout_width="0dp"
+            android:layout_height="132dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="fitEnd"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"/>
+            app:layout_constraintStart_toEndOf="@id/divider_curr_weather"
+            app:layout_constraintTop_toBottomOf="@id/current_temperature"
+            tools:src="@drawable/default_icon_weather_height" />
 
         <TextView
             android:id="@+id/description_current_weather"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Пасмурные облака"
+            tools:text="Пасмурные облака"
             android:textSize="16sp"
             android:layout_margin="8dp"
             app:layout_constraintStart_toStartOf="parent"

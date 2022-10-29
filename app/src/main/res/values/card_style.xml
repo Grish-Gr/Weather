@@ -3,5 +3,6 @@
 
     <style name="WeatherCard" parent="CardView">
         <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">2dp</item>
     </style>
 </resources>

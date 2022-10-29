@@ -11,14 +11,24 @@
         <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/drawable/ic_thermometer.xml" value="0.186" />
         <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/drawable/ic_up.xml" value="0.199" />
         <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout-land/activity_main.xml" value="0.152" />
-        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout-sw600dp-land/activity_main.xml" value="0.14193548387096774" />
-        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout-sw600dp-land/list_step_weather_fragment.xml" value="0.1852017937219731" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout-sw600dp-land/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout-sw600dp-land/list_step_weather_fragment.xml" value="0.128" />
         <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/activity_main.xml" value="0.23425925925925925" />
-        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_list_weather.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/activity_location.xml" value="0.176" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/activity_search_city.xml" value="0.2" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/card_location.xml" value="0.6" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/card_save_location.xml" value="0.264" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_list_weather.xml" value="0.176" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_list_weather_step.xml" value="0.12825994014536127" />
         <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_main.xml" value="0.264" />
         <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_search.xml" value="0.253125" />
-        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/info_weather_fragment.xml" value="0.264" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_search_city.xml" value="0.536" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_search_location.xml" value="0.176" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_search_save_location.xml" value="0.176" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_info.xml" value="0.176" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_main.xml" value="0.264" />
+        <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/info_weather_fragment.xml" value="0.4" />
         <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/list_step_weather_fragment.xml" value="0.176" />
         <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/main_card_weather.xml" value="0.144" />
         <entry key="..\:/Users/argen/AndroidStudioProjects/Weather/app/src/main/res/layout/main_weather_fragment.xml" value="0.17760416666666667" />

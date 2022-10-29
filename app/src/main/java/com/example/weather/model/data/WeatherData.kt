@@ -5,5 +5,8 @@ data class WeatherData(
     val humidity: Int,
     val descriptionWeather: String,
     val urlIconWeather: String,
+    val urlIconWeatherHeight: String,
     val cloudiness: Int,
+    val visibility: Int,
+    val windDirection: Int
 )

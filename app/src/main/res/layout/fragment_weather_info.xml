@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="8dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_info_weather"
@@ -18,7 +18,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="@string/ex_temperature"
+            tools:text="@string/ex_temperature"
             android:textSize="24sp"
             app:drawableTopCompat="@drawable/ic_thermometer"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="@string/ex_direction_wind"
+            tools:text="@string/ex_direction_wind"
             android:textSize="24sp"
             app:drawableTopCompat="@drawable/ic_wind"
             app:layout_constraintEnd_toStartOf="@id/atm_pressure"
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text="@string/ex_pressure"
+            tools:text="@string/ex_pressure"
             android:textSize="20sp"
             app:drawableTopCompat="@drawable/ic_barometer"
             app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +98,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="@string/ex_visibility"
+            tools:text="@string/ex_visibility"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider"
@@ -109,7 +109,6 @@
             android:layout_height="0dp"
             android:gravity="top"
             android:text="@string/description_visibility"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
             app:layout_constraintEnd_toEndOf="@id/visibility_weather"
             app:layout_constraintStart_toStartOf="@id/visibility_weather"
             app:layout_constraintTop_toBottomOf="@id/visibility_weather" />
@@ -120,7 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="@string/ex_humidity"
+            tools:text="@string/ex_humidity"
             android:textSize="24sp"
             app:drawableTopCompat="@drawable/ic_humidity"
             app:layout_constraintEnd_toStartOf="@id/cloudiness"
@@ -128,7 +127,6 @@
             app:layout_constraintTop_toBottomOf="@id/divider" />
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:gravity="top"
@@ -144,7 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
-            android:text="@string/ex_cloudiness"
+            tools:text="@string/ex_cloudiness"
             android:textSize="24sp"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
@@ -156,7 +154,6 @@
             android:layout_height="0dp"
             android:text="@string/description_cloudiness"
             android:gravity="top"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
             app:layout_constraintEnd_toEndOf="@id/cloudiness"
             app:layout_constraintStart_toStartOf="@id/cloudiness"
             app:layout_constraintTop_toBottomOf="@id/cloudiness" />

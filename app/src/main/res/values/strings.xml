@@ -2,7 +2,7 @@
     <string name="app_name">Weather</string>
     <string name="ex_time">12:00</string>
     <string name="description_step_weather_image">icon_step_weather</string>
-    <string name="ex_temperature">10°ᶜ</string>
+    <string name="ex_temperature">10.0°ᶜ</string>
     <string name="ex_min_temperature">9.1°ᶜ</string>
     <string name="ex_max_temperature">10.0°ᶜ</string>
     <string name="ex_direction_wind">SSE</string>
@@ -16,6 +16,11 @@
     <string name="description_feels_like">Feels like</string>
     <string name="ex_visibility">6 km</string>
     <string name="description_humidity">Humidity</string>
-    <string name="ex_location">Moscow</string>
+    <string name="ex_location">Ekaterinburg</string>
     <string name="description_image_settings">icon_settings</string>
+    <string name="temp_celsius">%.1f°ᶜ</string>
+    <string name="hint_search_city">Search City</string>
+    <string name="description_back_to_main_activity">Back to MainActivity</string>
+    <string name="choose_city">Choose City</string>
+    <string name="ex_last_date_save_weather">Последние сохраненный данные: 12.10.2022</string>
 </resources>

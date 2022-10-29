@@ -14,13 +14,13 @@ class GeocodingRepositoryImpl @Inject constructor(
     override suspend fun getLocationByName(
         nameCity: String,
         count: Int
-    ): Result<List<LocationData>> {
+    ): ResultOf<List<LocationData>> {
         return try{
-             Result.Success(geocodingService.getLocationCity(nameCity).map {
+             ResultOf.Success(geocodingService.getLocationCity(nameCity).map {
                 mapperLocation.mapping(it)
             })
         } catch (ex: Exception){
-            Result.Error(ex.toString())
+            ResultOf.Error(ex.toString())
         }
     }
 
@@ -28,13 +28,13 @@ class GeocodingRepositoryImpl @Inject constructor(
         latitude: Float,
         longitude: Float,
         count: Int
-    ): Result<List<LocationData>> {
+    ): ResultOf<List<LocationData>> {
         return try{
-            Result.Success(geocodingService.getCityByLocation(latitude, longitude, count).map {
+            ResultOf.Success(geocodingService.getCityByLocation(latitude, longitude, count).map {
                 mapperLocation.mapping(it)
             })
         } catch (ex: Exception){
-            Result.Error(ex.toString())
+            ResultOf.Error(ex.toString())
         }
     }
 }
