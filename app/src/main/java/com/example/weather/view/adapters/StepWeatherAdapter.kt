@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weather.R
 import com.example.weather.model.data.StepForecastData
-import com.example.weather.model.data.StepWeatherData
 import com.example.weather.view.adapters.holders.StepWeatherHolder
 
 class StepWeatherAdapter: RecyclerView.Adapter<StepWeatherHolder>() {

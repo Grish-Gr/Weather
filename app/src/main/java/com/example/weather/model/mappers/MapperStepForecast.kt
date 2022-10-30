@@ -2,20 +2,19 @@ package com.example.weather.model.mappers
 
 import com.example.weather.data.network.model.response.StepForecast
 import com.example.weather.model.data.StepForecastData
-import com.example.weather.model.data.StepWeatherData
-import com.example.weather.model.data.TemperatureData
-import com.example.weather.model.data.WeatherData
+import com.example.weather.model.data.detail.StepWeatherDetail
+import com.example.weather.model.data.detail.TemperatureDetail
 
 class MapperStepForecast: Mapper<StepForecast, StepForecastData> {
     override fun mapping(source: StepForecast): StepForecastData {
         with(source){
-            val temperatureData = TemperatureData(
+            val temperatureData = TemperatureDetail(
                 temperature = infoTemperatures.temperature,
                 feelsLikeTemperature = infoTemperatures.feelsLike,
                 minTemperature = infoTemperatures.minTemperature,
                 maxTemperature = infoTemperatures.maxTemperature
             )
-            val weatherData = StepWeatherData(
+            val weatherData = StepWeatherDetail(
                 descriptionWeather = weather.first().description,
                 urlIconWeather = getUrlByIcon(weather.first().idIconWeather),
                 urlIconWeatherHeight = getUrlByIconHeight(weather.first().idIconWeather)

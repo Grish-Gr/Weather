@@ -1,12 +1,10 @@
-package com.example.weather.model.data
+package com.example.weather.model.data.detail
 
-import com.example.weather.R
-
-data class TemperatureData(
+data class TemperatureDetail(
     val temperature: Float,
     val feelsLikeTemperature: Float,
-    val minTemperature: Float,
-    val maxTemperature: Float
+    val minTemperature: Float? = null,
+    val maxTemperature: Float? = null
 ){
 
     companion object {

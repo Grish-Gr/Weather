@@ -1,18 +1,16 @@
 package com.example.weather.di
 
+import com.example.weather.data.db.entities.LocationEntity
+import com.example.weather.data.db.entities.WeatherEntity
 import com.example.weather.data.network.model.response.CurrentForecastResponse
 import com.example.weather.data.network.model.response.LocationResponse
 import com.example.weather.data.network.model.response.StepForecast
 import com.example.weather.model.data.CurrentForecastData
 import com.example.weather.model.data.LocationData
+import com.example.weather.model.data.SavedForecastData
 import com.example.weather.model.data.StepForecastData
-import com.example.weather.model.mappers.Mapper
-import dagger.Binds
+import com.example.weather.model.mappers.*
 import dagger.Module
-import javax.inject.Qualifier
-import com.example.weather.model.mappers.MapperCurrentForecast
-import com.example.weather.model.mappers.MapperLocation
-import com.example.weather.model.mappers.MapperStepForecast
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
@@ -32,4 +30,18 @@ class MapperModule {
     @Provides
     fun provideMapperLocation(): Mapper<LocationResponse, LocationData> =
         MapperLocation()
+
+    @Provides
+    fun provideMapperSavedLocation(): Mapper<LocationEntity, LocationData> =
+        MapperSavedLocation()
+
+    @Provides
+    fun provideMapperSavedForecast(
+        mapperLocation: Mapper<LocationEntity, LocationData>
+    ): Mapper<Pair<LocationEntity, WeatherEntity>, SavedForecastData> =
+        MapperSavedForecast(mapperLocation)
+
+    @Provides
+    fun provideMapperEntityWeather(): Mapper<Pair<LocationData, CurrentForecastData>, WeatherEntity> =
+        MapperWeatherEntity()
 }

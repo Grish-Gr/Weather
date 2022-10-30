@@ -13,9 +13,6 @@ import com.example.weather.model.data.StepForecastData
 import com.example.weather.model.interfaces.GeocodingRepository
 import com.example.weather.model.interfaces.WeatherRepository
 import com.example.weather.model.mappers.Mapper
-import com.example.weather.model.mappers.MapperCurrentForecast
-import com.example.weather.model.mappers.MapperLocation
-import com.example.weather.model.mappers.MapperStepForecast
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

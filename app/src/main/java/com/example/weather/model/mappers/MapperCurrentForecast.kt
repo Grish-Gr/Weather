@@ -2,37 +2,42 @@ package com.example.weather.model.mappers
 
 import com.example.weather.data.network.model.response.CurrentForecastResponse
 import com.example.weather.model.data.CurrentForecastData
-import com.example.weather.model.data.SunTimeData
-import com.example.weather.model.data.TemperatureData
-import com.example.weather.model.data.WeatherData
+import com.example.weather.model.data.detail.IconsDetail
+import com.example.weather.model.data.detail.SunTimeDetail
+import com.example.weather.model.data.detail.TemperatureDetail
+import com.example.weather.model.data.detail.WeatherDetail
+import java.util.*
 
 class MapperCurrentForecast: Mapper<CurrentForecastResponse, CurrentForecastData> {
     override fun mapping(source: CurrentForecastResponse): CurrentForecastData {
-        val temperatureData = TemperatureData(
+        val temperatureData = TemperatureDetail(
             temperature = source.infoTemperature.temperature,
             feelsLikeTemperature = source.infoTemperature.feelsLike,
             minTemperature = source.infoTemperature.minTemperature,
             maxTemperature = source.infoTemperature.maxTemperature
         )
-        val weatherData = WeatherData(
+        val weatherData = WeatherDetail(
             pressure = source.infoTemperature.pressure,
             humidity = source.infoTemperature.humidity,
             descriptionWeather = source.listWeather.first().description,
-            urlIconWeather = getUrlByIcon(source.listWeather.first().idIconWeather),
-            urlIconWeatherHeight = getUrlByIconHeight(source.listWeather.first().idIconWeather),
             cloudiness = source.clouds.cloudiness,
             visibility = source.visibility,
-            windDirection = source.winder.directionWind
+            windDirection = "TODO"
         )
-        val sunTimeData = SunTimeData(
-            timeToSunrise = source.sys.timeToSunrise,
-            timeToSunset = source.sys.timeToSunset
+        val sunTimeData = SunTimeDetail(
+            dateSunrise = getDateByUTC(source.sys.timeToSunrise, source.timezone),
+            dateSunset = getDateByUTC(source.sys.timeToSunset, source.timezone)
+        )
+        val icons = IconsDetail(
+            urlIconWeather = getUrlByIcon(source.listWeather.first().idIconWeather),
+            urlIconWeatherHeight = getUrlByIconHeight(source.listWeather.first().idIconWeather)
         )
         return CurrentForecastData(
             temperature = temperatureData,
             weather = weatherData,
             sunTime = sunTimeData,
-            timeZone = source.timezone
+            date = getCurrentDateByUTC(source.timezone),
+            icons = icons
         )
     }
 
@@ -41,4 +46,19 @@ class MapperCurrentForecast: Mapper<CurrentForecastResponse, CurrentForecastData
 
     private fun getUrlByIconHeight(idIcon: String): String =
         "http://openweathermap.org/img/wn/${idIcon}@4x.png"
+
+    private fun getCurrentDateByUTC(timeZone: Int): Date {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
+        val millis = Calendar.getInstance().timeInMillis + (timeZone * 1000)
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = millis
+        return calendar.time
+    }
+
+    private fun getDateByUTC(dateUtcInSecond: Long, timeZone: Int): Date{
+        val millis = (dateUtcInSecond  + timeZone) * 1000
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = millis
+        return calendar.time
+    }
 }

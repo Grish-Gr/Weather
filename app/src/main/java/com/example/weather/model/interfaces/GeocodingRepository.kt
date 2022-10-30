@@ -1,7 +1,7 @@
 package com.example.weather.model.interfaces
 
-import com.example.weather.model.data.LocationData
 import com.example.weather.model.ResultOf
+import com.example.weather.model.data.LocationData
 
 interface GeocodingRepository {
 

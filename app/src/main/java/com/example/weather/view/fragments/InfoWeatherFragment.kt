@@ -1,16 +1,14 @@
 package com.example.weather.view.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.example.weather.databinding.FragmentWeatherInfoBinding
 import com.example.weather.model.data.CurrentForecastData
-import com.example.weather.model.data.TemperatureData
+import com.example.weather.model.data.detail.TemperatureDetail
 import com.example.weather.viewmodels.CurrentWeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,7 +39,7 @@ class InfoWeatherFragment: Fragment() {
     }
 
     private fun fillView(forecast: CurrentForecastData){
-        binding.feelsLikeTemperature.text = TemperatureData
+        binding.feelsLikeTemperature.text = TemperatureDetail
             .getTemperatureCelsius(forecast.temperature.feelsLikeTemperature)
         binding.cloudiness.text = String.format("%s", forecast.weather.cloudiness) + '%'
         binding.atmPressure.text = String.format("%s hPA", forecast.weather.pressure)
