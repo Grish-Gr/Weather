@@ -1,15 +1,12 @@
 package com.example.weather.di
 
 import com.example.weather.model.interfaces.GeocodingRepository
+import com.example.weather.model.interfaces.SaveLocationRepository
 import com.example.weather.model.interfaces.WeatherRepository
-import com.example.weather.usecases.GetCurrentWeatherUseCase
-import com.example.weather.usecases.GetLongIntervalWeatherUseCase
-import com.example.weather.usecases.GetShortIntervalWeatherUseCase
-import com.example.weather.usecases.SearchCityUseCase
+import com.example.weather.usecases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.ViewModelComponent
 
 @Module
@@ -37,6 +34,34 @@ class UseCaseModule {
     @Provides
     fun provideSearchCityUseCase(
         geocodingRepository: GeocodingRepository
-    ): SearchCityUseCase =
-        SearchCityUseCase(geocodingRepository)
+    ): SearchLocationUseCase =
+        SearchLocationUseCase(geocodingRepository)
+
+    @Provides
+    fun provideCheckInternetConnectionUseCase(): CheckInternetConnectionUseCase =
+        CheckInternetConnectionUseCase()
+
+    @Provides
+    fun provideSaveForecastUseCase(
+        saveLocationRepository: SaveLocationRepository
+    ): SaveForecastUseCase =
+        SaveForecastUseCase(saveLocationRepository)
+
+    @Provides
+    fun provideUpdateSavedForecast(
+        saveLocationRepository: SaveLocationRepository
+    ): UpdateSavedForecastUseCase =
+        UpdateSavedForecastUseCase(saveLocationRepository)
+
+    @Provides
+    fun provideSearchSavedLocationUseCase(
+        saveLocationRepository: SaveLocationRepository
+    ): SearchSavedLocationUseCase =
+        SearchSavedLocationUseCase(saveLocationRepository)
+
+    @Provides
+    fun provideDeleteSavedLocationUseCase(
+        saveLocationRepository: SaveLocationRepository
+    ): DeleteSavedLocationUseCase =
+        DeleteSavedLocationUseCase(saveLocationRepository)
 }

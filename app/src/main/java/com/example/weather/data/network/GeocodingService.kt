@@ -9,11 +9,11 @@ interface GeocodingService {
     @GET("./geo/1.0/direct")
     suspend fun getLocationCity(
         @Query("q") nameCity: String,
-        @Query("limit") count: Int = 1): List<LocationResponse>
+        @Query("limit") count: Int = 5): List<LocationResponse>
 
     @GET("/geo/1.0/reverse")
     suspend fun getCityByLocation(
         @Query("lat") latitude: Float,
         @Query("lon") longitude: Float,
-        @Query("limit") count: Int = 1): List<LocationResponse>
+        @Query("limit") count: Int): List<LocationResponse>
 }

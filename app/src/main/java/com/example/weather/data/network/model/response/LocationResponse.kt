@@ -7,7 +7,7 @@ data class LocationResponse(
     val name: String,
 
     @SerializedName("local_names")
-    val countriesName: Map<String, String>,
+    val countriesName: Map<String, String>? = null,
 
     @SerializedName("lat")
     val latitude: Float,

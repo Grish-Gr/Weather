@@ -10,7 +10,7 @@
         android:id="@+id/search_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_search_city"
+        android:hint="Network"
         android:layout_margin="4dp"
         android:elevation="4dp"
         app:layout_constraintStart_toStartOf="parent"

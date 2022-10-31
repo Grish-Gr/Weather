@@ -53,6 +53,7 @@ dependencies {
     //Coroutines implements
     def coroutines_version = "1.6.4"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 
     //Hilt implements

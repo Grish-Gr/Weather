@@ -23,4 +23,6 @@
     <string name="description_back_to_main_activity">Back to MainActivity</string>
     <string name="choose_city">Choose City</string>
     <string name="ex_last_date_save_weather">Последние сохраненный данные: 12.10.2022</string>
+    <string name="description_add_location">Add New Location</string>
+    <string name="no_internet_access">No Internet Access</string>
 </resources>

@@ -5,7 +5,7 @@ import com.example.weather.model.data.LocationData
 import com.example.weather.model.interfaces.GeocodingRepository
 import javax.inject.Inject
 
-class SearchCityUseCase @Inject constructor(
+class SearchLocationUseCase @Inject constructor(
     private val geocodingRepository: GeocodingRepository
 ) {
 
