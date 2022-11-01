@@ -1,13 +1,29 @@
 package com.example.weather.view.fragments
 
+import android.annotation.SuppressLint
+import android.content.res.Resources
+import android.graphics.drawable.Drawable
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.weather.R
 import java.util.*
 
-fun Fragment.getCurrentDateByUTC(shiftInSecFromUTC: Int): Date{
-    TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
-    val millis = Calendar.getInstance().timeInMillis + (shiftInSecFromUTC * 1000)
+@SuppressLint("UseCompatLoadingForDrawables")
+fun ViewGroup.setBackgroundShapeByDate(date: Date) {
     val calendar = Calendar.getInstance()
-    calendar.timeInMillis = millis
-    return calendar.time
+    calendar.time = date
+    val hour = (calendar.get(Calendar.HOUR_OF_DAY))
+    val res = when{
+        hour in 0..3 -> R.drawable.shape_deep_night
+        hour <= 5    -> R.drawable.shape_light_night
+        hour <= 9    -> R.drawable.shape_sunrise
+        hour <= 12   -> R.drawable.shape_morning
+        hour <= 14   -> R.drawable.shape_midday
+        hour <= 16   -> R.drawable.shape_late_day
+        hour <= 19   -> R.drawable.shape_early_evening
+        hour <= 21   -> R.drawable.shape_evening
+        hour <= 23   -> R.drawable.shape_late_evening
+        else         -> R.drawable.shape_night
+    }
+    background = resources.getDrawable(res, this.context.theme)
 }

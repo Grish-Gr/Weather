@@ -2,14 +2,15 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardBackgroundColor="#FFF8EB"
+    android:layout_margin="2dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_info_weather"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFE4EA">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/feels_like_temperature"

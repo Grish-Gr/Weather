@@ -4,6 +4,8 @@ import com.example.weather.data.network.model.response.StepForecast
 import com.example.weather.model.data.StepForecastData
 import com.example.weather.model.data.detail.StepWeatherDetail
 import com.example.weather.model.data.detail.TemperatureDetail
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MapperStepForecast: Mapper<StepForecast, StepForecastData> {
     override fun mapping(source: StepForecast): StepForecastData {
@@ -23,9 +25,14 @@ class MapperStepForecast: Mapper<StepForecast, StepForecastData> {
             return StepForecastData(
                 temperature = temperatureData,
                 weather = weatherData,
-                textDate = textDate
+                date = getDateByString(textDate)
             )
         }
+    }
+
+    private fun getDateByString(dateString: String): Date {
+        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        return format.parse(dateString)
     }
 
     private fun getUrlByIcon(idIcon: String): String =

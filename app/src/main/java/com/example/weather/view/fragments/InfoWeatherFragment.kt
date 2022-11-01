@@ -1,6 +1,9 @@
 package com.example.weather.view.fragments
 
+import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +13,7 @@ import com.example.weather.databinding.FragmentWeatherInfoBinding
 import com.example.weather.model.data.CurrentForecastData
 import com.example.weather.model.data.detail.TemperatureDetail
 import com.example.weather.viewmodels.CurrentWeatherViewModel
+import com.example.weather.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,6 +43,7 @@ class InfoWeatherFragment: Fragment() {
     }
 
     private fun fillView(forecast: CurrentForecastData){
+        binding.layoutInfoWeather.setBackgroundShapeByDate(forecast.date)
         binding.feelsLikeTemperature.text = TemperatureDetail
             .getTemperatureCelsius(forecast.temperature.feelsLikeTemperature)
         binding.cloudiness.text = String.format("%s", forecast.weather.cloudiness) + '%'

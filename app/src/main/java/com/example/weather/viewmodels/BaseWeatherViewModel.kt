@@ -2,7 +2,10 @@ package com.example.weather.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.weather.model.ResultOf
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 typealias ErrorAction = (message: String) -> Unit
 typealias SuccessAction<T> = (result: ResultOf.Success<T>) -> Unit
@@ -15,12 +18,16 @@ open class BaseWeatherViewModel: ViewModel() {
         resultOf: ResultOf<T>,
         successAction: SuccessAction<T>,
         errorAction: ErrorAction
-    ) = when (resultOf){
-        is ResultOf.Success -> {
-            successAction(resultOf)
-        }
-        is ResultOf.Error -> {
-            errorAction(resultOf.exceptionMessage)
+    ) {
+        when (resultOf){
+            is ResultOf.Success -> {
+                successAction(resultOf)
+            }
+            is ResultOf.Error -> {
+                viewModelScope.launch(Dispatchers.Main) {
+                    errorAction(resultOf.exceptionMessage)
+                }
+            }
         }
     }
 }

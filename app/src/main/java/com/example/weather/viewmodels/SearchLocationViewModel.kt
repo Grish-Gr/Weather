@@ -22,7 +22,7 @@ class SearchLocationViewModel @Inject constructor(
     private val _listSearchingLocation = MutableLiveData<List<LocationData>>()
     val listSearchingLocation: LiveData<List<LocationData>> = _listSearchingLocation
 
-    fun getLocation(nameCity: String){
+    fun getLocation(nameCity: String, errorAction: ErrorAction = defaultErrorAction){
         jobSearchLocation?.cancel()
         jobSearchLocation = viewModelScope.launch(Dispatchers.IO) {
             delay(500)
@@ -30,7 +30,7 @@ class SearchLocationViewModel @Inject constructor(
             manipulateResult(
                 searchCity.searchCityByName(nameCity),
                 successAction = { _listSearchingLocation.postValue(it.value) },
-                errorAction = defaultErrorAction)
+                errorAction = errorAction)
         }
     }
 }
