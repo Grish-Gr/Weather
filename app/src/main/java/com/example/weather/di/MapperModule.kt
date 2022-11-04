@@ -44,4 +44,8 @@ class MapperModule {
     @Provides
     fun provideMapperEntityWeather(): Mapper<Pair<LocationData, CurrentForecastData>, WeatherEntity> =
         MapperWeatherEntity()
+
+    @Provides
+    fun provideMapperLocationEntity(): Mapper<LocationData, LocationEntity> =
+        MapperLocationEntity()
 }

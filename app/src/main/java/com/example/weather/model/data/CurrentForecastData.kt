@@ -18,7 +18,28 @@ data class CurrentForecastData(
     override val date: Date,
     val icons: IconsDetail,
     val sunTime: SunTimeDetail
-): ForecastData()
+): ForecastData(){
+
+    companion object{
+        val defaultCurrentForecast = CurrentForecastData(
+            temperature = TemperatureDetail(
+                temperature = 0.0f,
+                feelsLikeTemperature = 0.0f
+            ),
+            weather = WeatherDetail(
+                descriptionWeather = "",
+                pressure = 0,
+                humidity = 0,
+                cloudiness = 0,
+                visibility = 0,
+                windDirection = ""
+            ),
+            date = Date(),
+            icons = IconsDetail(urlIconWeatherHeight = "", urlIconWeather = ""),
+            sunTime = SunTimeDetail(dateSunrise = Date(), dateSunset = Date())
+        )
+    }
+}
 
 data class SavedForecastData(
     override val temperature: TemperatureDetail,

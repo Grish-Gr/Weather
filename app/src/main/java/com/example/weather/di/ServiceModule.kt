@@ -17,7 +17,8 @@ import javax.inject.Singleton
 internal object ServiceModule {
 
     private const val BASE_URL = "http://api.openweathermap.org"
-    private const val API_KEY = "c750f6c1fbc97349d8e7e197f08487a6"
+    private const val API_KEY_2 = "c750f6c1fbc97349d8e7e197f08487a6"
+    private const val API_KEY = "6bfa40f6aec60575a924e10d78ff1560"
 
     @Provides
     fun provideHttpClient(): OkHttpClient{

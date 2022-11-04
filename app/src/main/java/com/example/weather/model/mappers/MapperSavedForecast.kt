@@ -26,10 +26,12 @@ class MapperSavedForecast @Inject constructor(
             visibility = weather.visibility,
             windDirection = weather.directionWind
         )
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = weather.dateSave
         return SavedForecastData(
             temperature = temperature,
             weather = weatherDetail,
-            date = Date(weather.dateSave),
+            date = calendar.time,
             location = mapperSavedLocation.mapping(source.first)
         )
     }

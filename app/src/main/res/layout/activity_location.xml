@@ -6,6 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/top_divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="26sp"/>
+
     <ImageView
         android:id="@+id/back_to_main_activity"
         android:layout_width="24dp"
@@ -14,7 +24,7 @@
         android:src="@drawable/ic_back"
         android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/top_divider"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_location_fragment"

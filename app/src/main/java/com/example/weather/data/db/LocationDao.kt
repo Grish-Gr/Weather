@@ -11,7 +11,10 @@ interface LocationDao {
     suspend fun searchLocations(nameCity: String): List<LocationEntity>
 
     @Query("SELECT * FROM weathers WHERE location_latitude = :latitude AND location_longitude = :longitude")
-    suspend fun getWeather(latitude: Float, longitude: Float): WeatherEntity
+    suspend fun getWeather(latitude: Float, longitude: Float): WeatherEntity?
+
+    @Query("SELECT * FROM locations WHERE latitude_location = :latitude AND longitude_location = :longitude")
+    suspend fun getLocation(latitude: Float, longitude: Float): LocationEntity?
 
     @Insert
     suspend fun insertLocation(locationEntity: LocationEntity)

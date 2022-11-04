@@ -4,15 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResultListener
 import com.example.weather.R
 import com.example.weather.databinding.ActivityLocationBinding
 import com.example.weather.model.data.LocationData
+import com.example.weather.usecases.offline.SearchSavedLocationUseCase
 import com.example.weather.view.fragments.SearchLocationFragment
 import com.example.weather.viewmodels.LocationViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -26,14 +25,8 @@ class LocationActivity: BaseActivity() {
         binding = ActivityLocationBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initObserveInViewModel()
-        val fragment = SearchLocationFragment()
-        /*fragment.chooseLocation.observe(this){
-            sendResult(it)
-        }*/
-
-        Log.e("TAG", "in OnCreate")
         supportFragmentManager.beginTransaction()
-            .replace(R.id.container_location_fragment, fragment)
+            .replace(R.id.container_location_fragment, SearchLocationFragment())
             .commit()
     }
 

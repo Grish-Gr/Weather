@@ -4,21 +4,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.weather.model.data.StepForecastData
-import com.example.weather.usecases.GetShortIntervalWeatherUseCase
+import com.example.weather.usecases.utils.GetLastLocationUseCase
+import com.example.weather.usecases.online.GetShortIntervalWeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class StepWeatherViewModel @Inject constructor(
-    private val shortIntervalWeather: GetShortIntervalWeatherUseCase
+    private val shortIntervalWeather: GetShortIntervalWeatherUseCase,
+    private val lastLocation: GetLastLocationUseCase
 ): BaseWeatherViewModel() {
 
     private val _listStepWeather = MutableLiveData<List<StepForecastData>>()
     val listStepWeather: LiveData<List<StepForecastData>> = _listStepWeather
 
     fun getListStepWeather(
-        nameCity: String,
+        nameCity: String = lastLocation.getLastLocation().locationName,
         count: Int = 5,
         errorAction: ErrorAction = defaultErrorAction
     ){

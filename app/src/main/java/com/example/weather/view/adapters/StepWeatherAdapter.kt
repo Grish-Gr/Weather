@@ -20,7 +20,7 @@ class StepWeatherAdapter: RecyclerView.Adapter<StepWeatherHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StepWeatherHolder {
         val view = LayoutInflater.from(parent.context).
-        inflate(R.layout.step_card_weather, parent, false)
+        inflate(R.layout.item_step_weather, parent, false)
         return StepWeatherHolder(view)
     }
 

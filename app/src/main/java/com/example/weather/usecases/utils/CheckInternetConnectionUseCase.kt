@@ -1,15 +1,19 @@
-package com.example.weather.usecases
+package com.example.weather.usecases.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.annotation.RequiresApi
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class CheckInternetConnectionUseCase{
+class CheckInternetConnectionUseCase @Inject constructor(
+    @ApplicationContext private val applicationContext: Context
+){
 
-    fun checkConnection(context: Context): Boolean {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    fun checkConnection(): Boolean {
+        val connectivityManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             checkConnectionForHeightAPI(connectivityManager)
         } else {

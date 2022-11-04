@@ -1,4 +1,4 @@
-package com.example.weather.usecases
+package com.example.weather.usecases.online
 
 import com.example.weather.model.ResultOf
 import com.example.weather.model.data.CurrentForecastData

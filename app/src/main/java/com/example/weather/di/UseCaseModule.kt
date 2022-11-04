@@ -1,13 +1,23 @@
 package com.example.weather.di
 
+import android.content.Context
 import com.example.weather.model.interfaces.GeocodingRepository
-import com.example.weather.model.interfaces.SaveLocationRepository
+import com.example.weather.model.interfaces.SavedWeatherRepository
+import com.example.weather.model.interfaces.SharedPreferencesRepository
 import com.example.weather.model.interfaces.WeatherRepository
-import com.example.weather.usecases.*
+import com.example.weather.usecases.offline.*
+import com.example.weather.usecases.online.GetCurrentWeatherUseCase
+import com.example.weather.usecases.online.GetLongIntervalWeatherUseCase
+import com.example.weather.usecases.online.GetShortIntervalWeatherUseCase
+import com.example.weather.usecases.online.SearchLocationUseCase
+import com.example.weather.usecases.utils.CheckInternetConnectionUseCase
+import com.example.weather.usecases.utils.GetLastLocationUseCase
+import com.example.weather.usecases.utils.SaveLastLocationUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -38,30 +48,56 @@ class UseCaseModule {
         SearchLocationUseCase(geocodingRepository)
 
     @Provides
-    fun provideCheckInternetConnectionUseCase(): CheckInternetConnectionUseCase =
-        CheckInternetConnectionUseCase()
+    fun provideCheckInternetConnectionUseCase(
+        @ApplicationContext context: Context
+    ): CheckInternetConnectionUseCase =
+        CheckInternetConnectionUseCase(context)
 
     @Provides
     fun provideSaveForecastUseCase(
-        saveLocationRepository: SaveLocationRepository
+        savedWeatherRepository: SavedWeatherRepository
     ): SaveForecastUseCase =
-        SaveForecastUseCase(saveLocationRepository)
+        SaveForecastUseCase(savedWeatherRepository)
 
     @Provides
     fun provideUpdateSavedForecast(
-        saveLocationRepository: SaveLocationRepository
+        savedWeatherRepository: SavedWeatherRepository
     ): UpdateSavedForecastUseCase =
-        UpdateSavedForecastUseCase(saveLocationRepository)
+        UpdateSavedForecastUseCase(savedWeatherRepository)
 
     @Provides
     fun provideSearchSavedLocationUseCase(
-        saveLocationRepository: SaveLocationRepository
+        savedWeatherRepository: SavedWeatherRepository
     ): SearchSavedLocationUseCase =
-        SearchSavedLocationUseCase(saveLocationRepository)
+        SearchSavedLocationUseCase(savedWeatherRepository)
+
+    @Provides
+    fun provideGetSavedForecastUseCase(
+        savedWeatherRepository: SavedWeatherRepository
+    ): GetSavedForecastUseCase =
+        GetSavedForecastUseCase(savedWeatherRepository)
+
+    @Provides
+    fun provideCheckSavedLocationUseCase(
+        savedWeatherRepository: SavedWeatherRepository
+    ): CheckSavedLocationUseCase =
+        CheckSavedLocationUseCase(savedWeatherRepository)
 
     @Provides
     fun provideDeleteSavedLocationUseCase(
-        saveLocationRepository: SaveLocationRepository
+        savedWeatherRepository: SavedWeatherRepository
     ): DeleteSavedLocationUseCase =
-        DeleteSavedLocationUseCase(saveLocationRepository)
+        DeleteSavedLocationUseCase(savedWeatherRepository)
+
+    @Provides
+    fun provideGetLastLocationUseCase(
+        sharedPreferencesRepository: SharedPreferencesRepository
+    ): GetLastLocationUseCase =
+        GetLastLocationUseCase(sharedPreferencesRepository)
+
+    @Provides
+    fun provideSaveLastLocationUseCase(
+        sharedPreferencesRepository: SharedPreferencesRepository
+    ): SaveLastLocationUseCase =
+        SaveLastLocationUseCase(sharedPreferencesRepository)
 }

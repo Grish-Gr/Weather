@@ -9,7 +9,6 @@ class MapperWeatherEntity: Mapper<Pair<LocationData, CurrentForecastData>, Weath
         val location = source.first
         val forecast = source.second
         return WeatherEntity(
-            id = 0,
             temperature = forecast.temperature.temperature,
             dateSave = forecast.date.time,
             description = forecast.weather.descriptionWeather,

@@ -10,5 +10,8 @@ data class TemperatureDetail(
     companion object {
         fun getTemperatureCelsius(temperature: Float): String =
             String.format("%.1f°ᶜ", temperature)
+
+        fun getTemperatureCelsius(temperature: Int): String =
+            "${temperature}°ᶜ"
     }
 }

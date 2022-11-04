@@ -37,5 +37,11 @@ data class LocationData(
         override fun newArray(size: Int): Array<LocationData?> {
             return arrayOfNulls(size)
         }
+        val DefaultLocation = LocationData(
+            locationName = "Екатеринбург",
+            latitude = 56.8575f,
+            longitude = 60.6125f,
+            country = "RU"
+        )
     }
 }

@@ -32,7 +32,6 @@ class SearchLocationFragment: Fragment() {
     private val viewModel: SearchLocationViewModel by viewModels()
     private val viewModelLocation: LocationViewModel by activityViewModels()
     private val _chooseLocation = MutableLiveData<LocationData>()
-    val chooseLocation = _chooseLocation
     private lateinit var binding: FragmentLocationSearchBinding
 
     override fun onCreateView(

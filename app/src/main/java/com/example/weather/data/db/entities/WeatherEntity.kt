@@ -9,6 +9,7 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(
     tableName = "weathers",
+    primaryKeys = ["location_latitude", "location_longitude"],
     foreignKeys = [ForeignKey(
         entity = LocationEntity::class,
         parentColumns = ["latitude_location", "longitude_location"],
@@ -17,11 +18,6 @@ import com.google.gson.annotations.SerializedName
         onDelete = CASCADE)]
 )
 data class WeatherEntity(
-
-    @ColumnInfo(name = "id_weather")
-    @PrimaryKey
-    val id: Int,
-
     @ColumnInfo(name = "temperature_weather")
     val temperature: Float,
 

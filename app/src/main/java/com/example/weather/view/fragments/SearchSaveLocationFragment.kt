@@ -46,7 +46,7 @@ class SearchSaveLocationFragment: Fragment() {
 
     private fun initAction(){
         binding.addLocation.setOnClickListener {
-            if (viewModel.checkInternetConnection(this.context as Context)){
+            if (viewModel.checkInternetConnection()){
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.container_location_fragment, SearchLocationFragment())
                     .addToBackStack(null)

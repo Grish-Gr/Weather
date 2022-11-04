@@ -13,7 +13,8 @@ import com.example.weather.databinding.FragmentListWeatherBinding
 import com.example.weather.databinding.FragmentListWeatherStepBinding
 import com.example.weather.databinding.FragmentWeatherInfoBinding
 import com.example.weather.view.adapters.StepWeatherAdapter
-import com.example.weather.viewmodels.MainViewModel
+import com.example.weather.viewmodels.CurrentLocationViewModel
+import com.example.weather.viewmodels.LocationViewModel
 import com.example.weather.viewmodels.StepWeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class StepWeatherListFragment: Fragment() {
 
     private lateinit var binding: FragmentListWeatherStepBinding
-    private val mainViewModel: MainViewModel by activityViewModels()
+    private val mainViewModel: CurrentLocationViewModel by activityViewModels()
     private val viewModel: StepWeatherViewModel by viewModels()
 
     override fun onCreateView(
@@ -37,20 +38,20 @@ class StepWeatherListFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         initViewModel()
+        viewModel.getListStepWeather(count =  8)
     }
 
     private fun initRecyclerView(){
         binding.listStepWeather.adapter = StepWeatherAdapter()
-        binding.listStepWeather.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        binding.listStepWeather.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
     }
 
     private fun initViewModel(){
-        viewModel.getListStepWeather("Екатеринбург")
         viewModel.listStepWeather.observe(this.viewLifecycleOwner){
             (binding.listStepWeather.adapter as StepWeatherAdapter).setListStepWeather(it)
         }
         mainViewModel.currentLocation.observe(this.viewLifecycleOwner){
-            viewModel.getListStepWeather(it.locationName, 12)
+            viewModel.getListStepWeather(it.locationName, 8)
         }
     }
 }

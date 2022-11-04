@@ -1,10 +1,7 @@
 package com.example.weather.view.fragments
 
 import android.annotation.SuppressLint
-import android.content.res.Resources
-import android.graphics.drawable.Drawable
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.weather.R
 import java.util.*
 
@@ -16,6 +13,7 @@ fun ViewGroup.setBackgroundShapeByDate(date: Date) {
     val res = when{
         hour in 0..3 -> R.drawable.shape_deep_night
         hour <= 5    -> R.drawable.shape_light_night
+        hour <= 7    -> R.drawable.shape_early_morning
         hour <= 9    -> R.drawable.shape_sunrise
         hour <= 12   -> R.drawable.shape_morning
         hour <= 14   -> R.drawable.shape_midday
