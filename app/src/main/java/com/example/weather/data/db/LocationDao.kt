@@ -10,6 +10,9 @@ interface LocationDao {
     @Query("SELECT * FROM locations WHERE name_location LIKE '%' || :nameCity || '%'")
     suspend fun searchLocations(nameCity: String): List<LocationEntity>
 
+    @Query("SELECT * FROM locations")
+    suspend fun getAllLocations(): List<LocationEntity>
+
     @Query("SELECT * FROM weathers WHERE location_latitude = :latitude AND location_longitude = :longitude")
     suspend fun getWeather(latitude: Float, longitude: Float): WeatherEntity?
 

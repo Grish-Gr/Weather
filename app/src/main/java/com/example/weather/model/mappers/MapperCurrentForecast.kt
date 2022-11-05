@@ -22,7 +22,7 @@ class MapperCurrentForecast: Mapper<CurrentForecastResponse, CurrentForecastData
             descriptionWeather = source.listWeather.first().description,
             cloudiness = source.clouds.cloudiness,
             visibility = source.visibility,
-            windDirection = "TODO"
+            windDirection = getWindDirection(source.winder.directionWind)
         )
         val sunTimeData = SunTimeDetail(
             dateSunrise = getDateByUTC(source.sys.timeToSunrise, source.timezone),
@@ -60,5 +60,10 @@ class MapperCurrentForecast: Mapper<CurrentForecastResponse, CurrentForecastData
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = millis
         return calendar.time
+    }
+
+    private fun getWindDirection(radius: Int): String{
+        val arr = arrayOf("N","NNE","NE","ENE","E","ESE", "SE", "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW")
+        return arr[radius % 16]
     }
 }

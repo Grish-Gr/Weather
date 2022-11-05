@@ -7,7 +7,7 @@ import com.example.weather.model.ResultOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-typealias ErrorAction = (message: String) -> Unit
+typealias ErrorAction = (ex: Exception) -> Unit
 typealias SuccessAction<T> = (result: ResultOf.Success<T>) -> Unit
 
 open class BaseWeatherViewModel: ViewModel() {
@@ -25,7 +25,7 @@ open class BaseWeatherViewModel: ViewModel() {
             }
             is ResultOf.Error -> {
                 viewModelScope.launch(Dispatchers.Main) {
-                    errorAction(resultOf.exceptionMessage)
+                    errorAction(resultOf.exception)
                 }
             }
         }

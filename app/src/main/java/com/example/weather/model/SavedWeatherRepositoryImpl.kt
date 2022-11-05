@@ -21,7 +21,19 @@ class SavedWeatherRepositoryImpl @Inject constructor(
 ): SavedWeatherRepository {
 
     override suspend fun getWeathers(nameCity: String): List<SavedForecastData> {
-        val locations = database.getDao().searchLocations(nameCity)
+        val locations = database.getDao().searchLocations(nameCity.trim())
+        val weathers = locations.map { location ->
+            database.getDao().getWeather(location.latitude, location.longitude)
+        }
+        return locations.zip(weathers).map { entry ->
+            mapperForecast.mapping(Pair(
+                first = entry.first,
+                second = entry.second ?: mapperWeatherEntity.mapping(Pair(LocationData.DefaultLocation, CurrentForecastData.defaultCurrentForecast))))
+        }
+    }
+
+    override suspend fun getWeathers(): List<SavedForecastData> {
+        val locations = database.getDao().getAllLocations()
         val weathers = locations.map { location ->
             database.getDao().getWeather(location.latitude, location.longitude)
         }

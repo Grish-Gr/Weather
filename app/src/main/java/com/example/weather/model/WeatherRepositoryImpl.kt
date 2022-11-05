@@ -29,7 +29,7 @@ class WeatherRepositoryImpl @Inject constructor(
                     language = Locale.getDefault().language)))
         } catch (ex: Exception){
             Log.e(this::class.toString(), ex.toString())
-            ResultOf.Error(ex.toString())
+            ResultOf.Error(ex)
         }
     }
 
@@ -41,7 +41,7 @@ class WeatherRepositoryImpl @Inject constructor(
                     language = Locale.getDefault().language)))
         } catch (ex: Exception){
             Log.e(this::class.toString(), ex.toString())
-            ResultOf.Error(ex.toString())
+            ResultOf.Error(ex)
         }
     }
 
@@ -61,7 +61,7 @@ class WeatherRepositoryImpl @Inject constructor(
             })
         } catch (ex: Exception){
             Log.e(this::class.simpleName, ex.toString())
-            ResultOf.Error(ex.toString())
+            ResultOf.Error(ex)
         }
     }
 
@@ -76,7 +76,7 @@ class WeatherRepositoryImpl @Inject constructor(
             })
         } catch (ex: Exception){
             Log.e(WeatherRepositoryImpl::class.simpleName, ex.toString())
-            ResultOf.Error(ex.toString())
+            ResultOf.Error(ex)
         }
     }
 }

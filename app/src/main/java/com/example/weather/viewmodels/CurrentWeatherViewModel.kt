@@ -85,6 +85,7 @@ class CurrentWeatherViewModel @Inject constructor(
 
     private fun changeTheme(date: Date){
         viewModelScope.launch(Dispatchers.Main) {
+            Log.e("TAG", "Change Theme")
             if (isNight(date)){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {

@@ -28,7 +28,10 @@ class StepWeatherViewModel @Inject constructor(
             val result = shortIntervalWeather.getShortIntervalWeather(nameCity, count)
             manipulateResult(
                 resultOf = result,
-                errorAction = errorAction,
+                errorAction = {
+                    _listStepWeather.postValue(emptyList())
+                    errorAction(it)
+                },
                 successAction = {
                     _listStepWeather.postValue(it.value)
                 })

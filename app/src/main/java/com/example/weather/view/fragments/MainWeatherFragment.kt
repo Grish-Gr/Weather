@@ -36,7 +36,6 @@ class MainWeatherFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewModel()
-        viewModel.getCurrentForecast()
     }
 
     private fun initViewModel(){

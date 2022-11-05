@@ -19,11 +19,15 @@
     <string name="ex_location">Ekaterinburg</string>
     <string name="description_image_settings">icon_settings</string>
     <string name="temp_celsius">%.1f°ᶜ</string>
-    <string name="hint_search_city">Search City</string>
     <string name="description_back_to_main_activity">Back to MainActivity</string>
     <string name="choose_city">Choose City</string>
-    <string name="ex_last_date_save_weather">Последние сохраненный данные: 12.10.2022</string>
     <string name="description_add_location">Add New Location</string>
+
+    <string name="ex_last_date_save_weather">Last saved date:\n%s</string>
     <string name="no_internet_access">No Internet Access</string>
-    <string name="nothing_found">Nothing Found...</string>
+    <string name="nothing_found">Nothing Found…</string>
+    <string name="menu_item_delete_location">Delete Location</string>
+    <string name="menu_item_open_forecast">Open Forecast</string>
+    <string name="hint_search_city">Search City</string>
+    <string name="show_more">Show More</string>
 </resources>

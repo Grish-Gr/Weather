@@ -9,6 +9,7 @@ import com.example.weather.databinding.ActivityLocationBinding
 import com.example.weather.model.data.LocationData
 import com.example.weather.usecases.offline.SearchSavedLocationUseCase
 import com.example.weather.view.fragments.SearchLocationFragment
+import com.example.weather.view.fragments.SearchSaveLocationFragment
 import com.example.weather.viewmodels.LocationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -26,7 +27,7 @@ class LocationActivity: BaseActivity() {
         setContentView(binding.root)
         initObserveInViewModel()
         supportFragmentManager.beginTransaction()
-            .replace(R.id.container_location_fragment, SearchLocationFragment())
+            .replace(R.id.container_location_fragment, SearchSaveLocationFragment())
             .commit()
     }
 

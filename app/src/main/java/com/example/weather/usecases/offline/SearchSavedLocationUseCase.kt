@@ -10,4 +10,7 @@ class SearchSavedLocationUseCase @Inject constructor(
 
     suspend fun searchLocation(cityName: String): List<SavedForecastData> =
         savedWeatherRepository.getWeathers(cityName)
+
+    suspend fun getAllLocation(): List<SavedForecastData> =
+        savedWeatherRepository.getWeathers()
 }

@@ -8,6 +8,7 @@ import com.example.weather.view.activities.LocationActivity
 interface SavedWeatherRepository {
 
     suspend fun getWeathers(nameCity: String): List<SavedForecastData>
+    suspend fun getWeathers(): List<SavedForecastData>
     suspend fun getLocation(latitude: Float, longitude: Float): LocationData?
     suspend fun getForecast(latitude: Float, longitude: Float): SavedForecastData
 

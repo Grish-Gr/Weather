@@ -25,6 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.net.UnknownHostException
 
 @AndroidEntryPoint
 class SearchLocationFragment: Fragment() {
@@ -65,8 +66,10 @@ class SearchLocationFragment: Fragment() {
             if (it.toString().isBlank()) return@addTextChangedListener
             viewModel.getLocation(
                 nameCity = it.toString(),
-                errorAction = {
-                    Toast.makeText(this.context, getString(R.string.no_internet_access), Toast.LENGTH_SHORT).show()
+                errorAction = { exception ->
+                    if (exception is UnknownHostException){
+                        Toast.makeText(this.context, getString(R.string.no_internet_access), Toast.LENGTH_SHORT).show()
+                    }
                 }
             )
             binding.indicatorSearch.visibility = View.VISIBLE

@@ -26,13 +26,18 @@ class MapperSavedForecast @Inject constructor(
             visibility = weather.visibility,
             windDirection = weather.directionWind
         )
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = weather.dateSave
         return SavedForecastData(
             temperature = temperature,
             weather = weatherDetail,
-            date = calendar.time,
+            date = getDateByMillisUTC(weather.dateSave),
             location = mapperSavedLocation.mapping(source.first)
         )
+    }
+
+    private fun getDateByMillisUTC(millis: Long): Date{
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = millis
+        return calendar.time
     }
 }

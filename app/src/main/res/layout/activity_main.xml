@@ -84,30 +84,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
-                <Button
-                    android:id="@+id/show_more_step_weather"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="64dp"
-                    android:textSize="14sp"
-                    android:text="Show More"
-                    android:layout_marginTop="4dp"
-                    android:textColor="?attr/colorOnSecondary"
-                    style="?attr/materialButtonOutlinedStyle"
-                    app:layout_constraintTop_toBottomOf="@id/container_list_step_weather"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="2dp"
+                    app:cardCornerRadius="14dp"
                     android:layout_margin="8dp"
                     app:cardBackgroundColor="?android:attr/colorBackground"
                     style="?attr/materialCardViewOutlinedStyle"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/show_more_step_weather"
+                    app:layout_constraintTop_toBottomOf="@id/container_list_step_weather"
                     app:layout_constraintBottom_toBottomOf="parent">
 
                     <androidx.fragment.app.FragmentContainerView

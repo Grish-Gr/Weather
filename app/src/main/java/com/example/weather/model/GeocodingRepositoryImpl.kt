@@ -5,6 +5,7 @@ import com.example.weather.data.network.model.response.LocationResponse
 import com.example.weather.model.data.LocationData
 import com.example.weather.model.interfaces.GeocodingRepository
 import com.example.weather.model.mappers.Mapper
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 class GeocodingRepositoryImpl @Inject constructor(
@@ -19,8 +20,10 @@ class GeocodingRepositoryImpl @Inject constructor(
              ResultOf.Success(geocodingService.getLocationCity(nameCity).map {
                 mapperLocation.mapping(it)
             })
-        } catch (ex: Exception){
-            ResultOf.Error(ex.toString())
+        } catch (ex: UnknownHostException){
+            ResultOf.Error(ex)
+        } catch(ex: Exception) {
+            ResultOf.Error(ex)
         }
     }
 
@@ -33,8 +36,10 @@ class GeocodingRepositoryImpl @Inject constructor(
             ResultOf.Success(geocodingService.getCityByLocation(latitude, longitude, count).map {
                 mapperLocation.mapping(it)
             })
-        } catch (ex: Exception){
-            ResultOf.Error(ex.toString())
+        } catch (ex: UnknownHostException){
+            ResultOf.Error(ex)
+        } catch(ex: Exception) {
+            ResultOf.Error(ex)
         }
     }
 }

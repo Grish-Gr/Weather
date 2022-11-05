@@ -27,9 +27,7 @@ class MainActivity : BaseActivity() {
     private val launcherActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val location: LocationData? = result.data?.getParcelableExtra(KEY_RESULT_LOCATION)
-            Log.e("TAG", location?.locationName ?: "")
             if (location != null){
-                Log.e("TAG", location.locationName)
                 locationViewModel.updateCurrentLocation(location)
                 binding.currentLocation.text = location.locationName
             }

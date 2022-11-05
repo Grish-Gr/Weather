@@ -1,6 +1,7 @@
 package com.example.weather.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +39,7 @@ class StepWeatherListFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         initViewModel()
-        viewModel.getListStepWeather(count =  8)
+        //viewModel.getListStepWeather(count =  8)
     }
 
     private fun initRecyclerView(){
@@ -48,6 +49,7 @@ class StepWeatherListFragment: Fragment() {
 
     private fun initViewModel(){
         viewModel.listStepWeather.observe(this.viewLifecycleOwner){
+            binding.showMoreStepWeather.visibility = if(it.isEmpty()) View.GONE else View.VISIBLE
             (binding.listStepWeather.adapter as StepWeatherAdapter).setListStepWeather(it)
         }
         mainViewModel.currentLocation.observe(this.viewLifecycleOwner){
