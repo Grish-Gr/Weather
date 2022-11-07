@@ -11,14 +11,14 @@ class GetShortIntervalWeatherUseCase @Inject constructor(
 
     suspend fun getShortIntervalWeather(
         nameCity: String,
-        count: Int = 5
+        count: Int
     ): ResultOf<List<StepForecastData>> =
         weatherRepository.getStepForecast(nameCity, count)
 
     suspend fun getShortIntervalWeather(
         latitude: Float,
         longitude: Float,
-        count: Int = 5
+        count: Int
     ): ResultOf<List<StepForecastData>> =
         weatherRepository.getStepForecast(latitude, longitude, count)
 }

@@ -19,7 +19,7 @@ class MapperCurrentForecast: Mapper<CurrentForecastResponse, CurrentForecastData
         val weatherData = WeatherDetail(
             pressure = source.infoTemperature.pressure,
             humidity = source.infoTemperature.humidity,
-            descriptionWeather = source.listWeather.first().description,
+            descriptionWeather = source.listWeather.first().description.replaceFirstChar { it.uppercase() },
             cloudiness = source.clouds.cloudiness,
             visibility = source.visibility,
             windDirection = getWindDirection(source.winder.directionWind)

@@ -79,4 +79,36 @@ class WeatherRepositoryImpl @Inject constructor(
             ResultOf.Error(ex)
         }
     }
+
+    override suspend fun getStepForecast(
+        latitude: Float,
+        longitude: Float
+    ): ResultOf<List<StepForecastData>> {
+        return try {
+            ResultOf.Success(weatherService.getForecastThreeHours(
+                latitude = latitude,
+                longitude = longitude,
+                language = Locale.getDefault().language
+            ).listForecast.map { stepForecast ->
+                mapperStepForecast.mapping(stepForecast)
+            })
+        } catch (ex: Exception){
+            Log.e(WeatherRepositoryImpl::class.simpleName, ex.toString())
+            ResultOf.Error(ex)
+        }
+    }
+
+    override suspend fun getStepForecast(nameCity: String): ResultOf<List<StepForecastData>> {
+        return try {
+            ResultOf.Success(weatherService.getForecastThreeHours(
+                nameCity = nameCity,
+                language = Locale.getDefault().language
+            ).listForecast.map { stepForecast ->
+                mapperStepForecast.mapping(stepForecast)
+            })
+        } catch (ex: Exception){
+            Log.e(WeatherRepositoryImpl::class.simpleName, ex.toString())
+            ResultOf.Error(ex)
+        }
+    }
 }

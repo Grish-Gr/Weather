@@ -25,7 +25,8 @@ class SearchLocationAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchLocationHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.card_location, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.card_location, parent, false)
         return SearchLocationHolder(view)
     }
 

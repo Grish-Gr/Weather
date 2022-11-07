@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.weather.model.data.StepForecastData
+import com.example.weather.usecases.online.GetLongIntervalWeatherUseCase
 import com.example.weather.usecases.utils.GetLastLocationUseCase
 import com.example.weather.usecases.online.GetShortIntervalWeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,15 +14,16 @@ import javax.inject.Inject
 @HiltViewModel
 class StepWeatherViewModel @Inject constructor(
     private val shortIntervalWeather: GetShortIntervalWeatherUseCase,
+    private val longIntervalWeather: GetLongIntervalWeatherUseCase,
     private val lastLocation: GetLastLocationUseCase
 ): BaseWeatherViewModel() {
 
     private val _listStepWeather = MutableLiveData<List<StepForecastData>>()
     val listStepWeather: LiveData<List<StepForecastData>> = _listStepWeather
 
-    fun getListStepWeather(
+    fun getShortListStepWeather(
         nameCity: String = lastLocation.getLastLocation().locationName,
-        count: Int = 5,
+        count: Int,
         errorAction: ErrorAction = defaultErrorAction
     ){
         viewModelScope.launch {
@@ -38,14 +40,30 @@ class StepWeatherViewModel @Inject constructor(
         }
     }
 
-    fun getListStepWeather(
-        latitude: Float,
-        longitude: Float,
+    fun getShortListStepWeather(
+        latitude: Float = lastLocation.getLastLocation().latitude,
+        longitude: Float = lastLocation.getLastLocation().longitude,
         count: Int,
         errorAction: ErrorAction = defaultErrorAction
     ){
         viewModelScope.launch {
             val result = shortIntervalWeather.getShortIntervalWeather(latitude, longitude, count)
+            manipulateResult(
+                resultOf = result,
+                errorAction = errorAction,
+                successAction = {
+                    _listStepWeather.postValue(it.value)
+                })
+        }
+    }
+
+    fun getAllListStepWeather(
+        latitude: Float = lastLocation.getLastLocation().latitude,
+        longitude: Float = lastLocation.getLastLocation().longitude,
+        errorAction: ErrorAction = defaultErrorAction
+    ){
+        viewModelScope.launch {
+            val result = longIntervalWeather.getLongIntervalWeather(latitude, longitude)
             manipulateResult(
                 resultOf = result,
                 errorAction = errorAction,

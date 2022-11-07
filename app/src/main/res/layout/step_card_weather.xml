@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    app:cardBackgroundColor="#F8B99F"
+    style="@style/CardView.WeatherCard"
+    app:cardCornerRadius="14dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,72 +12,53 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/time_step_weather"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ex_time"
-            android:textSize="24sp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:layout_margin="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
         <ImageView
-            android:id="@+id/image_step_weather"
-            android:layout_width="wrap_content"
-            android:layout_height="112dp"
-            android:contentDescription="@string/description_step_weather_image"
-            android:src="@drawable/default_icon_weather"
-            app:layout_constraintTop_toBottomOf="@id/time_step_weather"
+            android:id="@+id/icon_step_forecast"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/default_icon_weather_height"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/temperature_step_weather"
-            android:layout_width="match_parent"
+            android:id="@+id/date_step_forecast"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:layout_margin="4dp"
+            android:text="@string/ex_step_forecast_date"
+            app:layout_constraintEnd_toStartOf="@id/step_forecast_temperature"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon_step_forecast"/>
+
+        <TextView
+            android:id="@+id/description_step_forecast"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="top"
+            android:maxLines="2"
+            android:minLines="2"
+            android:text="@string/ex_current_forecast_description"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/step_forecast_temperature"
+            app:layout_constraintStart_toEndOf="@id/icon_step_forecast"
+            app:layout_constraintTop_toBottomOf="@id/date_step_forecast" />
+
+        <TextView
+            android:id="@+id/step_forecast_temperature"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ex_temperature"
-            android:textColor="@color/white"
             android:textSize="32sp"
-            android:gravity="center"
-            android:layout_marginHorizontal="8dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image_step_weather"/>
-
-        <TextView
-            android:id="@+id/min_step_temperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/ex_min_temperature"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/max_step_temperature"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/temperature_step_weather"
-            app:drawableBottomCompat="@drawable/ic_down"
-            app:drawableTint="@color/white" />
-
-        <TextView
-            android:id="@+id/max_step_temperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/ex_max_temperature"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/min_step_temperature"
-            app:layout_constraintTop_toBottomOf="@id/temperature_step_weather"
-            app:drawableBottomCompat="@drawable/ic_up"
-            app:drawableTint="@color/white" />
-
+            app:layout_constraintTop_toTopOf="@id/date_step_forecast"
+            app:layout_constraintBottom_toBottomOf="@id/description_step_forecast"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

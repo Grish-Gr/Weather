@@ -9,14 +9,14 @@ class GetLongIntervalWeatherUseCase @Inject constructor(
     private val weatherRepository: WeatherRepository
 ) {
 
-    suspend fun getShortIntervalWeather(
+    suspend fun getLongIntervalWeather(
         nameCity: String
     ): ResultOf<List<StepForecastData>> =
-        weatherRepository.getStepForecast(nameCity, 40)
+        weatherRepository.getStepForecast(nameCity)
 
-    suspend fun getShortIntervalWeather(
+    suspend fun getLongIntervalWeather(
         latitude: Float,
         longitude: Float
     ): ResultOf<List<StepForecastData>> =
-        weatherRepository.getStepForecast(latitude, longitude, 40)
+        weatherRepository.getStepForecast(latitude, longitude)
 }

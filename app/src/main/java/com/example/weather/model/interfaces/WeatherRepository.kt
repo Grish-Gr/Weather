@@ -11,4 +11,6 @@ interface WeatherRepository {
 
     suspend fun getStepForecast(latitude: Float, longitude: Float, count: Int = 5): ResultOf<List<StepForecastData>>
     suspend fun getStepForecast(nameCity: String, count: Int): ResultOf<List<StepForecastData>>
+    suspend fun getStepForecast(latitude: Float, longitude: Float): ResultOf<List<StepForecastData>>
+    suspend fun getStepForecast(nameCity: String): ResultOf<List<StepForecastData>>
 }

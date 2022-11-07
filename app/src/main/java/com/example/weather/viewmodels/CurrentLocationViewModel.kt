@@ -13,7 +13,7 @@ class CurrentLocationViewModel @Inject constructor(
     lastLocation: GetLastLocationUseCase
 ): ViewModel() {
 
-    private val _currentLocation = MutableLiveData<LocationData>(lastLocation.getLastLocation())
+    private val _currentLocation = MutableLiveData(lastLocation.getLastLocation())
     val currentLocation: LiveData<LocationData> = _currentLocation
 
     fun updateCurrentLocation(location: LocationData){

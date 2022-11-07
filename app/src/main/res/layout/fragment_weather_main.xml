@@ -71,7 +71,7 @@
         android:id="@+id/description_current_weather"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Пасмурные облака"
+        tools:text="@string/ex_current_forecast_description"
         android:textSize="16sp"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"

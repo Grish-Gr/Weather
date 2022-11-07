@@ -17,7 +17,7 @@ class MapperStepForecast: Mapper<StepForecast, StepForecastData> {
                 maxTemperature = infoTemperatures.maxTemperature
             )
             val weatherData = StepWeatherDetail(
-                descriptionWeather = weather.first().description,
+                descriptionWeather = weather.first().description.replaceFirstChar { it.uppercase() },
                 urlIconWeather = getUrlByIcon(weather.first().idIconWeather),
                 urlIconWeatherHeight = getUrlByIconHeight(weather.first().idIconWeather)
 

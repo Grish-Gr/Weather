@@ -39,6 +39,7 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initAction()
+        initRefreshData()
         binding.currentLocation.text = locationViewModel.currentLocation.value?.locationName
             ?: LocationData.DefaultLocation.locationName
         if (supportFragmentManager.fragments.isEmpty()) {
@@ -61,12 +62,17 @@ class MainActivity : BaseActivity() {
         }
         viewModel.currentForecast.observe(this){
             binding.layoutCurrentWeather.setBackgroundShapeByDate(it.date)
+            binding.refreshData.isRefreshing = false
         }
-        /*mainViewModel.currentLocation.observe(this){
-            binding.swipeRefreshData?.isRefreshing = false
+    }
+
+    private fun initRefreshData(){
+        binding.refreshData.setProgressViewOffset(true, 0, 200)
+        binding.refreshData.setOnRefreshListener {
+            locationViewModel.refreshCurrentLocation()
         }
-        binding.swipeRefreshData?.setOnRefreshListener {
-            mainViewModel.refreshCurrentLocation()
-        }*/
+        binding.appBarCurrentForecast.addOnOffsetChangedListener { _, verticalOffset ->
+            binding.refreshData.isEnabled = verticalOffset >= 0
+        }
     }
 }

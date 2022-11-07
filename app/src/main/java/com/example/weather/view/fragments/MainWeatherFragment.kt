@@ -57,6 +57,6 @@ class MainWeatherFragment: Fragment() {
         binding.currentTemperature.text = TemperatureDetail.getTemperatureCelsius(forecast.temperature.temperature.toInt())
         binding.currentDate.text = SimpleDateFormat("dd MMM, EEE", Locale.getDefault()).format(date)
         binding.currentTime.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(date)
-        binding.descriptionCurrentWeather.text = forecast.weather.descriptionWeather.replaceFirstChar { it.uppercase() }
+        binding.descriptionCurrentWeather.text = forecast.weather.descriptionWeather
     }
 }

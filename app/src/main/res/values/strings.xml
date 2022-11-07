@@ -30,4 +30,8 @@
     <string name="menu_item_open_forecast">Open Forecast</string>
     <string name="hint_search_city">Search City</string>
     <string name="show_more">Show More</string>
+    <string name="hide_list">Hide</string>
+    <string name="descriotion_swipe_refresh_scroll">Swipe Refresh Scroll</string>
+    <string name="ex_step_forecast_date">18:00, 12 Oct</string>
+    <string name="ex_current_forecast_description">Overcast clouds</string>
 </resources>
