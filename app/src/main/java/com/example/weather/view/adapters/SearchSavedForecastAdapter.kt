@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weather.R
-import com.example.weather.model.data.ForecastData
 import com.example.weather.model.data.LocationData
 import com.example.weather.model.data.SavedForecastData
 import com.example.weather.view.adapters.holders.SavedForecastHolder

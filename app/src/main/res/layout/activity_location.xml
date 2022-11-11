@@ -16,16 +16,16 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="26sp"/>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/back_to_main_activity"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:contentDescription="@string/description_back_to_main_activity"
-        android:src="@drawable/ic_back"
-        android:layout_margin="8dp"
+        android:background="@drawable/ic_back"
+        android:backgroundTint="?android:attr/editTextColor"
+        android:layout_margin="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_divider"
-        app:tint="?android:attr/editTextColor" />
+        app:layout_constraintTop_toBottomOf="@id/top_divider"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_location_fragment"

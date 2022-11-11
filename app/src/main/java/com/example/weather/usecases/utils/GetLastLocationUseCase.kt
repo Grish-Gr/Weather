@@ -1,6 +1,5 @@
 package com.example.weather.usecases.utils
 
-import com.example.weather.model.SharedPreferencesRepositoryImpl
 import com.example.weather.model.data.LocationData
 import com.example.weather.model.interfaces.SharedPreferencesRepository
 

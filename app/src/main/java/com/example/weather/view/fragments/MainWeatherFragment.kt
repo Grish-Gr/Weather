@@ -10,7 +10,6 @@ import com.example.weather.databinding.FragmentWeatherMainBinding
 import com.example.weather.model.data.CurrentForecastData
 import com.example.weather.model.data.ForecastData
 import com.example.weather.model.data.detail.TemperatureDetail
-import com.example.weather.viewmodels.CurrentLocationViewModel
 import com.example.weather.viewmodels.CurrentWeatherViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +20,7 @@ import java.util.*
 class MainWeatherFragment: Fragment() {
 
     private lateinit var binding: FragmentWeatherMainBinding
-    private val mainViewModel: CurrentLocationViewModel by activityViewModels()
-    private val viewModel: CurrentWeatherViewModel by activityViewModels()
+    private val currentWeatherViewModel: CurrentWeatherViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,11 +37,8 @@ class MainWeatherFragment: Fragment() {
     }
 
     private fun initViewModel(){
-        viewModel.currentForecast.observe(this.viewLifecycleOwner){ forecast ->
+        currentWeatherViewModel.currentForecast.observe(this.viewLifecycleOwner){ forecast ->
             fillView(forecast)
-        }
-        mainViewModel.currentLocation.observe(this.viewLifecycleOwner){
-            viewModel.getCurrentForecast(latitude = it.latitude, longitude = it.longitude)
         }
     }
 

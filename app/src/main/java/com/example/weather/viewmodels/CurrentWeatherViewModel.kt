@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.weather.model.ResultOf
-import com.example.weather.model.data.CurrentForecastData
 import com.example.weather.model.data.ForecastData
 import com.example.weather.model.data.LocationData
 import com.example.weather.usecases.offline.GetSavedForecastUseCase
@@ -17,7 +15,6 @@ import com.example.weather.usecases.utils.GetLastLocationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
 
@@ -32,6 +29,8 @@ class CurrentWeatherViewModel @Inject constructor(
 
     private val _currentForecast = MutableLiveData<ForecastData>()
     val currentForecast: LiveData<ForecastData> = _currentForecast
+
+    fun getLastLocation(): LocationData = lastLocation.getLastLocation()
 
     fun getCurrentForecast(
         latitude: Float = lastLocation.getLastLocation().latitude,

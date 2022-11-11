@@ -7,12 +7,9 @@ import androidx.activity.viewModels
 import com.example.weather.R
 import com.example.weather.databinding.ActivityLocationBinding
 import com.example.weather.model.data.LocationData
-import com.example.weather.usecases.offline.SearchSavedLocationUseCase
-import com.example.weather.view.fragments.SearchLocationFragment
 import com.example.weather.view.fragments.SearchSaveLocationFragment
 import com.example.weather.viewmodels.LocationViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -26,14 +23,23 @@ class LocationActivity: BaseActivity() {
         binding = ActivityLocationBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initObserveInViewModel()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container_location_fragment, SearchSaveLocationFragment())
-            .commit()
+        initAction()
+        if (supportFragmentManager.backStackEntryCount == 0){
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container_location_fragment, SearchSaveLocationFragment())
+                .commit()
+        }
     }
 
     private fun initObserveInViewModel(){
         viewModel.chooseLocation.observe(this){
             sendResult(it)
+        }
+    }
+
+    private fun initAction(){
+        binding.backToMainActivity.setOnClickListener {
+            finish()
         }
     }
 
@@ -43,5 +49,9 @@ class LocationActivity: BaseActivity() {
         intent.putExtra(KEY_RESULT_LOCATION, location)
         setResult(RESULT_OK, intent)
         finish()
+    }
+
+    companion object{
+        private const val REQUEST_CODE_LOCATION = 1
     }
 }

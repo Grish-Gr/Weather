@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weather.databinding.FragmentStepWeatherBinding
 import com.example.weather.model.data.LocationData
 import com.example.weather.view.adapters.StepWeatherWithDetailAdapter
-import com.example.weather.viewmodels.StepWeatherViewModel
 import com.example.weather.viewmodels.WeatherStepViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

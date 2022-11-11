@@ -1,27 +1,22 @@
 package com.example.weather.view.fragments
 
-import android.content.res.Resources
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.weather.databinding.FragmentWeatherInfoBinding
-import com.example.weather.model.data.CurrentForecastData
 import com.example.weather.model.data.ForecastData
 import com.example.weather.model.data.detail.TemperatureDetail
 import com.example.weather.viewmodels.CurrentWeatherViewModel
-import com.example.weather.viewmodels.LocationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class InfoWeatherFragment: Fragment() {
 
     private lateinit var binding: FragmentWeatherInfoBinding
-    private val viewModel: CurrentWeatherViewModel by activityViewModels()
+    private val currentWeatherViewModel: CurrentWeatherViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +33,7 @@ class InfoWeatherFragment: Fragment() {
     }
 
     private fun initViewModel() {
-        viewModel.currentForecast.observe(this.viewLifecycleOwner){ forecast ->
+        currentWeatherViewModel.currentForecast.observe(this.viewLifecycleOwner){ forecast ->
             fillView(forecast)
         }
     }

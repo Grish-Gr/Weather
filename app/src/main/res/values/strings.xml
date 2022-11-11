@@ -34,4 +34,5 @@
     <string name="descriotion_swipe_refresh_scroll">Swipe Refresh Scroll</string>
     <string name="ex_step_forecast_date">18:00, 12 Oct</string>
     <string name="ex_current_forecast_description">Overcast clouds</string>
+    <string name="description_gps">Current location by GPS</string>
 </resources>

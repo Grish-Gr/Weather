@@ -21,6 +21,10 @@ class StepWeatherViewModel @Inject constructor(
     private val _listStepWeather = MutableLiveData<List<StepForecastData>>()
     val listStepWeather: LiveData<List<StepForecastData>> = _listStepWeather
 
+    fun setErrorAction(errorAction: ErrorAction){
+        defaultErrorAction = errorAction
+    }
+
     fun getShortListStepWeather(
         nameCity: String = lastLocation.getLastLocation().locationName,
         count: Int,

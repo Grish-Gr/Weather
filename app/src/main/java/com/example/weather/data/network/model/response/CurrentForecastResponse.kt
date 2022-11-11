@@ -2,7 +2,6 @@ package com.example.weather.data.network.model.response
 
 import com.example.weather.data.network.model.info.*
 import com.google.gson.annotations.SerializedName
-import dagger.multibindings.IntoMap
 
 data class CurrentForecastResponse(
 

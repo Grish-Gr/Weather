@@ -1,7 +1,6 @@
 package com.example.weather.view.activities
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import com.example.weather.R
 import com.example.weather.databinding.ActivityStepWeatherBinding
 import com.example.weather.model.data.LocationData

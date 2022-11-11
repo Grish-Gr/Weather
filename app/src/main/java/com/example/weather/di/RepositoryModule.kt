@@ -22,13 +22,11 @@ import com.example.weather.model.interfaces.SavedWeatherRepository
 import com.example.weather.model.interfaces.SharedPreferencesRepository
 import com.example.weather.model.interfaces.WeatherRepository
 import com.example.weather.model.mappers.Mapper
-import com.example.weather.model.mappers.MapperLocationEntity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-
 
 @Module
 @InstallIn(SingletonComponent::class)

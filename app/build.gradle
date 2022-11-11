@@ -80,6 +80,4 @@ dependencies {
     // WorkImage implements
     def picasso_version = "2.71828"
     implementation "com.squareup.picasso:picasso:$picasso_version"
-    implementation 'com.github.bumptech.glide:glide:4.14.2'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 }

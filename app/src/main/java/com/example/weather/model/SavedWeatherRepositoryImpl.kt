@@ -9,7 +9,6 @@ import com.example.weather.model.data.LocationData
 import com.example.weather.model.data.SavedForecastData
 import com.example.weather.model.interfaces.SavedWeatherRepository
 import com.example.weather.model.mappers.Mapper
-import com.example.weather.model.mappers.MapperWeatherEntity
 import javax.inject.Inject
 
 class SavedWeatherRepositoryImpl @Inject constructor(

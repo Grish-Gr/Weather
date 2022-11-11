@@ -1,9 +1,6 @@
 package com.example.weather.view.activities
 
-import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
-import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 open class BaseActivity: AppCompatActivity() {
 

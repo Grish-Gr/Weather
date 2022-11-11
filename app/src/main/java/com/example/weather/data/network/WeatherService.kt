@@ -2,7 +2,6 @@ package com.example.weather.data.network
 
 import com.example.weather.data.network.model.response.CurrentForecastResponse
 import com.example.weather.data.network.model.response.StepForecastResponse
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 

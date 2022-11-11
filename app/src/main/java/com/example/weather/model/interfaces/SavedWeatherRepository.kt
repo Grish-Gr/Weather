@@ -3,7 +3,6 @@ package com.example.weather.model.interfaces
 import com.example.weather.model.data.CurrentForecastData
 import com.example.weather.model.data.LocationData
 import com.example.weather.model.data.SavedForecastData
-import com.example.weather.view.activities.LocationActivity
 
 interface SavedWeatherRepository {
 
