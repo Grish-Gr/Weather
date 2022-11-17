@@ -2,9 +2,11 @@ package com.example.weather.view.activities
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Canvas
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.weather.R
 import com.example.weather.databinding.ActivityMainBinding
 import com.example.weather.model.data.LocationData
@@ -22,7 +24,6 @@ class MainActivity: BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private val currentWeatherViewModel: CurrentWeatherViewModel by viewModels()
     private val stepWeatherViewModel: StepWeatherViewModel by viewModels()
-
     private val launcherActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val location: LocationData? = result.data?.getParcelableExtra(KEY_RESULT_LOCATION)
@@ -47,7 +48,7 @@ class MainActivity: BaseActivity() {
             openCitySearchActivity()
         }
         currentWeatherViewModel.currentForecast.observe(this){
-            binding.layoutCurrentWeather.setBackgroundShapeByDate(it.date)
+            binding.appBarCurrentForecast.setBackgroundShapeByDate(it.date)
             binding.refreshData.isRefreshing = false
         }
     }

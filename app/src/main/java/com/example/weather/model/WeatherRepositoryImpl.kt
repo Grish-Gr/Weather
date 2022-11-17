@@ -54,11 +54,14 @@ class WeatherRepositoryImpl @Inject constructor(
             ResultOf.Success(weatherService.getForecastThreeHours(
                 latitude = latitude,
                 longitude = longitude,
-                count = count,
                 language = Locale.getDefault().language
             ).listForecast.map { stepForecast ->
                 mapperStepForecast.mapping(stepForecast)
-            })
+            }.filter { stepForecast ->
+                val calendar = Calendar.getInstance()
+                calendar.time = stepForecast.date
+                return@filter calendar.get(Calendar.HOUR_OF_DAY) % 6 == 0
+            }.subList(0, count))
         } catch (ex: Exception){
             Log.e(this::class.simpleName, ex.toString())
             ResultOf.Error(ex)
@@ -69,11 +72,14 @@ class WeatherRepositoryImpl @Inject constructor(
         return try {
             ResultOf.Success(weatherService.getForecastThreeHours(
                 nameCity = nameCity,
-                count = count,
                 language = Locale.getDefault().language
             ).listForecast.map { stepForecast ->
                 mapperStepForecast.mapping(stepForecast)
-            })
+            }.filter { stepForecast ->
+                val calendar = Calendar.getInstance()
+                calendar.time = stepForecast.date
+                return@filter calendar.get(Calendar.HOUR_OF_DAY) % 6 == 0
+            }.subList(0, count))
         } catch (ex: Exception){
             Log.e(WeatherRepositoryImpl::class.simpleName, ex.toString())
             ResultOf.Error(ex)
@@ -91,6 +97,10 @@ class WeatherRepositoryImpl @Inject constructor(
                 language = Locale.getDefault().language
             ).listForecast.map { stepForecast ->
                 mapperStepForecast.mapping(stepForecast)
+            }.filter { stepForecast ->
+                val calendar = Calendar.getInstance()
+                calendar.time = stepForecast.date
+                return@filter calendar.get(Calendar.HOUR_OF_DAY) % 6 == 0
             })
         } catch (ex: Exception){
             Log.e(WeatherRepositoryImpl::class.simpleName, ex.toString())
@@ -105,6 +115,10 @@ class WeatherRepositoryImpl @Inject constructor(
                 language = Locale.getDefault().language
             ).listForecast.map { stepForecast ->
                 mapperStepForecast.mapping(stepForecast)
+            }.filter { stepForecast ->
+                val calendar = Calendar.getInstance()
+                calendar.time = stepForecast.date
+                return@filter calendar.get(Calendar.HOUR_OF_DAY) % 6 == 0
             })
         } catch (ex: Exception){
             Log.e(WeatherRepositoryImpl::class.simpleName, ex.toString())

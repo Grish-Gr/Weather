@@ -11,23 +11,6 @@ interface WeatherService{
     suspend fun getForecastThreeHours(
         @Query("lat") latitude: Float,
         @Query("lon") longitude: Float,
-        @Query("cnt") count: Int = 5,
-        @Query("lang") language: String = "en",
-        @Query("units") units: String = "metric"
-    ): StepForecastResponse
-
-    @GET("/data/2.5/forecast")
-    suspend fun getForecastThreeHours(
-        @Query("q") nameCity: String,
-        @Query("cnt") count: Int = 5,
-        @Query("lang") language: String = "en",
-        @Query("units") units: String = "metric"
-    ): StepForecastResponse
-
-    @GET("./data/2.5/forecast")
-    suspend fun getForecastThreeHours(
-        @Query("lat") latitude: Float,
-        @Query("lon") longitude: Float,
         @Query("lang") language: String = "en",
         @Query("units") units: String = "metric"
     ): StepForecastResponse

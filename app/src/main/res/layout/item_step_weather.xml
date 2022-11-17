@@ -31,4 +31,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <ImageView
+        android:id="@+id/icon_step_weather"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="72dp"
+        android:src="@drawable/default_icon_weather"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/temp_step_weather"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
