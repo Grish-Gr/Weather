@@ -10,10 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.weather.R
 import com.example.weather.databinding.ActivityMainBinding
 import com.example.weather.model.data.LocationData
-import com.example.weather.view.fragments.InfoWeatherFragment
-import com.example.weather.view.fragments.MainWeatherFragment
-import com.example.weather.view.fragments.StepWeatherListFragment
-import com.example.weather.view.fragments.setBackgroundShapeByDate
+import com.example.weather.view.fragments.*
 import com.example.weather.viewmodels.CurrentWeatherViewModel
 import com.example.weather.viewmodels.StepWeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,6 +63,7 @@ class MainActivity: BaseActivity() {
             supportFragmentManager.beginTransaction()
                 .add(R.id.container_current_weather, MainWeatherFragment())
                 .add(R.id.container_info_weather, InfoWeatherFragment())
+                .add(R.id.container_sun_time_weather, InfoSunFragment())
                 .add(R.id.container_list_step_weather, StepWeatherListFragment())
                 .commit()
         }

@@ -8,7 +8,6 @@ import com.example.weather.databinding.CardSaveLocationBinding
 import com.example.weather.model.data.SavedForecastData
 import com.example.weather.model.data.detail.TemperatureDetail
 import com.example.weather.view.adapters.ActionClickOnCardLocation
-import com.example.weather.view.adapters.ActionLongClickCardLocation
 import java.text.SimpleDateFormat
 
 class SavedForecastHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -18,8 +17,7 @@ class SavedForecastHolder(view: View): RecyclerView.ViewHolder(view) {
     @SuppressLint("SimpleDateFormat")
     fun initView(
         forecastData: SavedForecastData,
-        actionClick: ActionClickOnCardLocation,
-        actionLongClickCardLocation: ActionLongClickCardLocation
+        actionClick: ActionClickOnCardLocation
     ) {
         binding.lastDateSaveWeather.text =
             String.format(binding.root.resources.getString(R.string.ex_last_date_save_weather), SimpleDateFormat("dd.MM.yyyy").format(forecastData.date))
@@ -29,9 +27,6 @@ class SavedForecastHolder(view: View): RecyclerView.ViewHolder(view) {
             TemperatureDetail.getTemperatureCelsius(forecastData.temperature.temperature)
         binding.cardViewLocation.setOnClickListener {
             actionClick(forecastData.location)
-        }
-        binding.cardViewLocation.setOnLongClickListener {
-            actionLongClickCardLocation(forecastData.location, it)
         }
     }
 }

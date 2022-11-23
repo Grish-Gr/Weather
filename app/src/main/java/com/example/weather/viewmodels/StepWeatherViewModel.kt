@@ -8,6 +8,7 @@ import com.example.weather.usecases.online.GetLongIntervalWeatherUseCase
 import com.example.weather.usecases.utils.GetLastLocationUseCase
 import com.example.weather.usecases.online.GetShortIntervalWeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,19 +22,14 @@ class StepWeatherViewModel @Inject constructor(
     private val _listStepWeather = MutableLiveData<List<StepForecastData>>()
     val listStepWeather: LiveData<List<StepForecastData>> = _listStepWeather
 
-    fun setErrorAction(errorAction: ErrorAction){
-        defaultErrorAction = errorAction
-    }
-
     fun getShortListStepWeather(
         nameCity: String = lastLocation.getLastLocation().locationName,
         count: Int,
         errorAction: ErrorAction = defaultErrorAction
     ){
-        viewModelScope.launch {
-            val result = shortIntervalWeather.getShortIntervalWeather(nameCity, count)
+        viewModelScope.launch(Dispatchers.IO) {
             manipulateResult(
-                resultOf = result,
+                resultOf = shortIntervalWeather.getShortIntervalWeather(nameCity, count),
                 errorAction = {
                     _listStepWeather.postValue(emptyList())
                     errorAction(it)
@@ -50,10 +46,9 @@ class StepWeatherViewModel @Inject constructor(
         count: Int,
         errorAction: ErrorAction = defaultErrorAction
     ){
-        viewModelScope.launch {
-            val result = shortIntervalWeather.getShortIntervalWeather(latitude, longitude, count)
+        viewModelScope.launch(Dispatchers.IO) {
             manipulateResult(
-                resultOf = result,
+                resultOf = shortIntervalWeather.getShortIntervalWeather(latitude, longitude, count),
                 errorAction = errorAction,
                 successAction = {
                     _listStepWeather.postValue(it.value)
@@ -66,10 +61,9 @@ class StepWeatherViewModel @Inject constructor(
         longitude: Float = lastLocation.getLastLocation().longitude,
         errorAction: ErrorAction = defaultErrorAction
     ){
-        viewModelScope.launch {
-            val result = longIntervalWeather.getLongIntervalWeather(latitude, longitude)
+        viewModelScope.launch(Dispatchers.IO) {
             manipulateResult(
-                resultOf = result,
+                resultOf = longIntervalWeather.getLongIntervalWeather(latitude, longitude),
                 errorAction = errorAction,
                 successAction = {
                     _listStepWeather.postValue(it.value)

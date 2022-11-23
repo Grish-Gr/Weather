@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SunArchView">
+        <attr name="colorArch" format="color"/>
+        <attr name="colorIconSun" format="color"/>
+        <attr name="iconSun" format="reference"/>
+        <attr name="backgroundIconSun" format="color"/>
+    </declare-styleable>
+
+    <attr name="sunArchView" format="reference"/>
+
+    <style name="SunArchView">
+        <item name="colorArch">#DFDF77</item>
+        <item name="iconSun">@drawable/ic_sun</item>
+        <item name="colorIconSun">#FFFF00</item>
+        <item name="backgroundIconSun">?android:attr/colorBackground</item>
+    </style>
+
+</resources>
+

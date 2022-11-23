@@ -3,18 +3,29 @@ package com.example.weather.view.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weather.R
+import com.example.weather.model.data.ForecastData
 import com.example.weather.model.data.LocationData
 import com.example.weather.model.data.SavedForecastData
 import com.example.weather.view.adapters.holders.SavedForecastHolder
 
+typealias ActionSwipe = (LocationData) -> Unit
+
 class SearchSavedForecastAdapter(
     private val actionClick: ActionClickOnCardLocation,
-    private val actionLongClick: ActionLongClickCardLocation
+    private val actionSwipe: ActionSwipe,
 ): RecyclerView.Adapter<SavedForecastHolder>() {
 
-    private var listSavedForecast: MutableList<SavedForecastData> = emptyList<SavedForecastData>().toMutableList()
+    private var listSavedForecast: MutableList<SavedForecastData> =
+        emptyList<SavedForecastData>().toMutableList()
+
+    fun deleteItemLocation(position: Int){
+        actionSwipe(listSavedForecast[position].location)
+        listSavedForecast.removeAt(position)
+        notifyItemRemoved(position)
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun setList(listSavedForecast: List<SavedForecastData>){
@@ -35,7 +46,7 @@ class SearchSavedForecastAdapter(
     }
 
     override fun onBindViewHolder(holder: SavedForecastHolder, position: Int) {
-        holder.initView(listSavedForecast[position], actionClick, actionLongClick)
+        holder.initView(listSavedForecast[position], actionClick)
     }
 
     override fun getItemCount(): Int  = listSavedForecast.size

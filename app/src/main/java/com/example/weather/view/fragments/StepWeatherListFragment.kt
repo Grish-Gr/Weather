@@ -58,9 +58,6 @@ class StepWeatherListFragment: Fragment() {
                 (binding.listStepWeather.adapter as StepWeatherAdapter).setListStepWeather(it)
             }
         }
-        stepWeatherViewModel.setErrorAction {
-            showToast(R.string.no_internet_access)
-        }
     }
 
     private fun initAction(){
@@ -69,7 +66,6 @@ class StepWeatherListFragment: Fragment() {
                 changeTextActionButton(R.string.hide_list)
                 binding.showMoreStepWeather.isClickable = false
                 stepWeatherViewModel.getAllListStepWeather{ _: Exception ->
-                    showToast(R.string.no_internet_access)
                     binding.showMoreStepWeather.isClickable = true
                     changeTextActionButton(R.string.show_more)
                 }
@@ -78,10 +74,6 @@ class StepWeatherListFragment: Fragment() {
                 changeTextActionButton(R.string.show_more)
             }
         }
-    }
-
-    private fun showToast(@StringRes idResMessage: Int){
-        Toast.makeText(this.context, resources.getText(idResMessage), Toast.LENGTH_SHORT).show()
     }
 
     private fun changeTextActionButton(@StringRes idResText: Int){

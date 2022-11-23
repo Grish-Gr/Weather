@@ -8,12 +8,14 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weather.R
 import com.example.weather.databinding.FragmentLocationSaveSearchBinding
 import com.example.weather.model.data.LocationData
 import com.example.weather.view.adapters.SearchSavedForecastAdapter
+import com.example.weather.view.adapters.TouchHelperSearchAdapter
 import com.example.weather.viewmodels.LocationViewModel
 import com.example.weather.viewmodels.SearchSaveLocationViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -68,19 +70,19 @@ class SearchSaveLocationFragment: Fragment() {
     }
 
     private fun initRecyclerView(){
-        binding.listSaveLocation.adapter = SearchSavedForecastAdapter(
+        val adapter = SearchSavedForecastAdapter(
             actionClick = {
                 viewModelLocation.setLocation(it)
             },
-            actionLongClick = { location, view ->
-                if (view != null){
-                    showMenuLocation(location, view)
-                    true
-                } else {
-                    false
-                }
+            actionSwipe = {
+                viewModel.deleteLocation(it)
             }
         )
+        val touchHelper = ItemTouchHelper(TouchHelperSearchAdapter(swipeAction = { position ->
+            adapter.deleteItemLocation(position)
+        }))
+        binding.listSaveLocation.adapter = adapter
+        touchHelper.attachToRecyclerView(binding.listSaveLocation)
         binding.listSaveLocation.layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL, false)
         viewModel.getLocations()
     }

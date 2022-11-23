@@ -10,7 +10,6 @@ import com.example.weather.model.data.LocationData
 import com.example.weather.view.adapters.holders.SearchLocationHolder
 
 typealias ActionClickOnCardLocation = (location: LocationData) -> Unit
-typealias ActionLongClickCardLocation = (location: LocationData, view: View?) -> Boolean
 
 class SearchLocationAdapter(
     private val actionClick: ActionClickOnCardLocation

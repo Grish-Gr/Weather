@@ -40,7 +40,7 @@ class SavedWeatherRepositoryImpl @Inject constructor(
             mapperForecast.mapping(Pair(
                 first = entry.first,
                 second = entry.second ?: mapperWeatherEntity.mapping(Pair(LocationData.DefaultLocation, CurrentForecastData.defaultCurrentForecast))))
-        }
+        }.sortedByDescending { savedForecast -> savedForecast.date }
     }
 
     override suspend fun getLocation(latitude: Float, longitude: Float): LocationData?{

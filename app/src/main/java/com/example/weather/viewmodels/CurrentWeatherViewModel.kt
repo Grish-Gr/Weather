@@ -37,11 +37,8 @@ class CurrentWeatherViewModel @Inject constructor(
         longitude: Float = lastLocation.getLastLocation().longitude,
         errorAction: ErrorAction = defaultErrorAction
     ) {
-        if (checkInternetConnection()){
-            getCurrentForecastByService(latitude, longitude, errorAction)
-        } else {
-            getCurrentForecastByDatabase(latitude, longitude)
-        }
+        getCurrentForecastByService(latitude, longitude, errorAction)
+
     }
 
     private fun getCurrentForecastByService(
@@ -50,13 +47,12 @@ class CurrentWeatherViewModel @Inject constructor(
         errorAction: ErrorAction
     ) {
         viewModelScope.launch(Dispatchers.IO) {
-            Log.e("TAG", "GET CURRENT FORECAST BY SERVICE")
             manipulateResult(
                 resultOf = currentWeather.getCurrentWeather(
                     latitude = latitude,
                     longitude = longitude
                 ),
-                errorAction = errorAction,
+                errorAction = {Log.e("TAG", "___ERROR___")},
                 successAction = { forecast ->
                     _currentForecast.postValue(forecast.value)
                     viewModelScope.launch(Dispatchers.IO) {
