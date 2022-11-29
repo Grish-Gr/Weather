@@ -8,7 +8,7 @@
         android:id="@+id/sunrise_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="06:00"
+        android:text="@string/ex_sunrise_time"
         android:textSize="20sp"
         android:layout_margin="4dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,7 +16,7 @@
         app:drawableTint="?attr/editTextColor"
         app:drawableTopCompat="@drawable/ic_sunrise" />
 
-    <com.example.weather.view.custom_view.SunArchView
+    <com.example.weather.ui.custom_view.SunArchView
         android:id="@+id/sun_arch"
         android:layout_width="0dp"
         android:layout_height="102dp"
@@ -30,7 +30,7 @@
         android:id="@+id/sunset_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="20:00"
+        android:text="@string/ex_sunset_time"
         android:textSize="20sp"
         android:layout_margin="4dp"
         app:layout_constraintEnd_toEndOf="parent"

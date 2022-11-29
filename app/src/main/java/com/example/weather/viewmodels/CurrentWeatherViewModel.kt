@@ -7,11 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.weather.model.data.ForecastData
 import com.example.weather.model.data.LocationData
-import com.example.weather.usecases.offline.GetSavedForecastUseCase
-import com.example.weather.usecases.offline.UpdateSavedForecastUseCase
-import com.example.weather.usecases.online.GetCurrentWeatherUseCase
-import com.example.weather.usecases.utils.CheckInternetConnectionUseCase
-import com.example.weather.usecases.utils.GetLastLocationUseCase
+import com.example.weather.domain.online.GetCurrentWeatherUseCase
+import com.example.weather.domain.utils.GetLastLocationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,9 +18,6 @@ import javax.inject.Inject
 @HiltViewModel
 class CurrentWeatherViewModel @Inject constructor(
     private val currentWeather: GetCurrentWeatherUseCase,
-    private val internetConnectionUseCase: CheckInternetConnectionUseCase,
-    private val updateSavedForecastUseCase: UpdateSavedForecastUseCase,
-    private val getSaveForecastUseCase: GetSavedForecastUseCase,
     private val lastLocation: GetLastLocationUseCase
 ): BaseWeatherViewModel() {
 
@@ -37,44 +31,18 @@ class CurrentWeatherViewModel @Inject constructor(
         longitude: Float = lastLocation.getLastLocation().longitude,
         errorAction: ErrorAction = defaultErrorAction
     ) {
-        getCurrentForecastByService(latitude, longitude, errorAction)
-
-    }
-
-    private fun getCurrentForecastByService(
-        latitude: Float,
-        longitude: Float,
-        errorAction: ErrorAction
-    ) {
         viewModelScope.launch(Dispatchers.IO) {
             manipulateResult(
                 resultOf = currentWeather.getCurrentWeather(
                     latitude = latitude,
                     longitude = longitude
                 ),
-                errorAction = {Log.e("TAG", "___ERROR___")},
+                errorAction = errorAction,
                 successAction = { forecast ->
                     _currentForecast.postValue(forecast.value)
-                    viewModelScope.launch(Dispatchers.IO) {
-                        updateSavedForecastUseCase.updateSavedForecast(latitude, longitude, forecast.value)
-                    }
                     changeTheme(forecast.value.date)
                 }
             )
-        }
-    }
-
-    private fun getCurrentForecastByDatabase(
-        latitude: Float,
-        longitude: Float
-    ) {
-        viewModelScope.launch(Dispatchers.IO) {
-            val savedForecast = getSaveForecastUseCase.getSavedForecastData(
-                latitude = latitude,
-                longitude = longitude
-            )
-            _currentForecast.postValue(savedForecast)
-            changeTheme(savedForecast.date)
         }
     }
 
@@ -88,9 +56,6 @@ class CurrentWeatherViewModel @Inject constructor(
             }
         }
     }
-
-    private fun checkInternetConnection(): Boolean =
-        internetConnectionUseCase.checkConnection()
 
     private fun isNight(date: Date): Boolean{
         val calendar = Calendar.getInstance()

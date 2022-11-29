@@ -1,12 +1,10 @@
 package com.example.weather.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.weather.domain.online.SearchLocationUseCase
 import com.example.weather.model.data.LocationData
-import com.example.weather.usecases.offline.SearchSavedLocationUseCase
-import com.example.weather.usecases.online.SearchLocationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -16,8 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchLocationViewModel @Inject constructor(
-    private val searchCity: SearchLocationUseCase,
-    private val searchSavedLocationUseCase: SearchSavedLocationUseCase
+    private val searchCity: SearchLocationUseCase
 ): BaseWeatherViewModel() {
 
     private var jobSearchLocation: Job? = null
@@ -28,8 +25,6 @@ class SearchLocationViewModel @Inject constructor(
         jobSearchLocation?.cancel()
         jobSearchLocation = viewModelScope.launch(Dispatchers.IO) {
             delay(500)
-            Log.e("TAG", nameCity)
-            Log.e("TAG", searchSavedLocationUseCase.searchLocation(nameCity).toString())
             manipulateResult(
                 resultOf = searchCity.searchCityByName(nameCity),
                 successAction = { _listSearchingLocation.postValue(it.value) },

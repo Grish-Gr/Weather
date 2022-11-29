@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.weather.model.data.StepForecastData
-import com.example.weather.usecases.online.GetLongIntervalWeatherUseCase
-import com.example.weather.usecases.utils.GetLastLocationUseCase
-import com.example.weather.usecases.online.GetShortIntervalWeatherUseCase
+import com.example.weather.domain.online.GetLongIntervalWeatherUseCase
+import com.example.weather.domain.utils.GetLastLocationUseCase
+import com.example.weather.domain.online.GetShortIntervalWeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,24 +23,6 @@ class StepWeatherViewModel @Inject constructor(
     val listStepWeather: LiveData<List<StepForecastData>> = _listStepWeather
 
     fun getShortListStepWeather(
-        nameCity: String = lastLocation.getLastLocation().locationName,
-        count: Int,
-        errorAction: ErrorAction = defaultErrorAction
-    ){
-        viewModelScope.launch(Dispatchers.IO) {
-            manipulateResult(
-                resultOf = shortIntervalWeather.getShortIntervalWeather(nameCity, count),
-                errorAction = {
-                    _listStepWeather.postValue(emptyList())
-                    errorAction(it)
-                },
-                successAction = {
-                    _listStepWeather.postValue(it.value)
-                })
-        }
-    }
-
-    fun getShortListStepWeather(
         latitude: Float = lastLocation.getLastLocation().latitude,
         longitude: Float = lastLocation.getLastLocation().longitude,
         count: Int,
@@ -49,7 +31,10 @@ class StepWeatherViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             manipulateResult(
                 resultOf = shortIntervalWeather.getShortIntervalWeather(latitude, longitude, count),
-                errorAction = errorAction,
+                errorAction = {
+                    errorAction(it)
+                    _listStepWeather.postValue(emptyList())
+                },
                 successAction = {
                     _listStepWeather.postValue(it.value)
                 })

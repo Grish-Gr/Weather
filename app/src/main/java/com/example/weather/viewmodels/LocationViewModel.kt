@@ -3,9 +3,9 @@ package com.example.weather.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.weather.model.data.LocationData
-import com.example.weather.usecases.offline.CheckSavedLocationUseCase
-import com.example.weather.usecases.offline.SaveForecastUseCase
-import com.example.weather.usecases.utils.SaveLastLocationUseCase
+import com.example.weather.domain.offline.CheckSavedLocationUseCase
+import com.example.weather.domain.offline.SaveForecastUseCase
+import com.example.weather.domain.utils.SaveLastLocationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -36,6 +37,7 @@ internal object ServiceModule {
                 chain.proceed(request)
             }
             .addInterceptor(interceptor)
+            .connectTimeout(5, TimeUnit.SECONDS)
             .build()
     }
 

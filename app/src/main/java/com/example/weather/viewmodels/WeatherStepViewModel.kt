@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.weather.model.data.LocationData
 import com.example.weather.model.data.StepForecastData
-import com.example.weather.usecases.online.GetLongIntervalWeatherUseCase
+import com.example.weather.domain.online.GetLongIntervalWeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

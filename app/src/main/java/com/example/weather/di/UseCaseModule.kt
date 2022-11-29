@@ -5,19 +5,17 @@ import com.example.weather.model.interfaces.GeocodingRepository
 import com.example.weather.model.interfaces.SavedWeatherRepository
 import com.example.weather.model.interfaces.SharedPreferencesRepository
 import com.example.weather.model.interfaces.WeatherRepository
-import com.example.weather.usecases.offline.*
-import com.example.weather.usecases.online.GetCurrentWeatherUseCase
-import com.example.weather.usecases.online.GetLongIntervalWeatherUseCase
-import com.example.weather.usecases.online.GetShortIntervalWeatherUseCase
-import com.example.weather.usecases.online.SearchLocationUseCase
-import com.example.weather.usecases.utils.CheckInternetConnectionUseCase
-import com.example.weather.usecases.utils.GetLastLocationUseCase
-import com.example.weather.usecases.utils.SaveLastLocationUseCase
+import com.example.weather.domain.offline.*
+import com.example.weather.domain.online.GetCurrentWeatherUseCase
+import com.example.weather.domain.online.GetLongIntervalWeatherUseCase
+import com.example.weather.domain.online.GetShortIntervalWeatherUseCase
+import com.example.weather.domain.online.SearchLocationUseCase
+import com.example.weather.domain.utils.GetLastLocationUseCase
+import com.example.weather.domain.utils.SaveLastLocationUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -48,34 +46,16 @@ class UseCaseModule {
         SearchLocationUseCase(geocodingRepository)
 
     @Provides
-    fun provideCheckInternetConnectionUseCase(
-        @ApplicationContext context: Context
-    ): CheckInternetConnectionUseCase =
-        CheckInternetConnectionUseCase(context)
-
-    @Provides
     fun provideSaveForecastUseCase(
         savedWeatherRepository: SavedWeatherRepository
     ): SaveForecastUseCase =
         SaveForecastUseCase(savedWeatherRepository)
 
     @Provides
-    fun provideUpdateSavedForecast(
-        savedWeatherRepository: SavedWeatherRepository
-    ): UpdateSavedForecastUseCase =
-        UpdateSavedForecastUseCase(savedWeatherRepository)
-
-    @Provides
     fun provideSearchSavedLocationUseCase(
         savedWeatherRepository: SavedWeatherRepository
     ): SearchSavedLocationUseCase =
         SearchSavedLocationUseCase(savedWeatherRepository)
-
-    @Provides
-    fun provideGetSavedForecastUseCase(
-        savedWeatherRepository: SavedWeatherRepository
-    ): GetSavedForecastUseCase =
-        GetSavedForecastUseCase(savedWeatherRepository)
 
     @Provides
     fun provideCheckSavedLocationUseCase(

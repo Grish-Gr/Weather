@@ -35,10 +35,11 @@ internal object RepositoryModule {
     @Provides
     fun provideWeatherRepository(
         weatherService: WeatherService,
+        savedWeatherRepository: SavedWeatherRepository,
         mapperCurrentForecast: Mapper<CurrentForecastResponse, CurrentForecastData>,
         mapperStepForecast: Mapper<StepForecast, StepForecastData>
     ): WeatherRepository{
-        return WeatherRepositoryImpl(weatherService, mapperCurrentForecast, mapperStepForecast)
+        return WeatherRepositoryImpl(weatherService, savedWeatherRepository, mapperCurrentForecast, mapperStepForecast)
     }
 
     @Provides

@@ -1,14 +1,12 @@
 package com.example.weather.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.weather.domain.offline.DeleteSavedLocationUseCase
+import com.example.weather.domain.offline.SearchSavedLocationUseCase
 import com.example.weather.model.data.LocationData
 import com.example.weather.model.data.SavedForecastData
-import com.example.weather.usecases.offline.DeleteSavedLocationUseCase
-import com.example.weather.usecases.offline.SearchSavedLocationUseCase
-import com.example.weather.usecases.utils.CheckInternetConnectionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -18,7 +16,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchSaveLocationViewModel @Inject constructor(
-    private val internetConnection: CheckInternetConnectionUseCase,
     private val searchSavedLocationUseCase: SearchSavedLocationUseCase,
     private val deleteSavedLocationUseCase: DeleteSavedLocationUseCase
 ): BaseWeatherViewModel() {
@@ -31,8 +28,6 @@ class SearchSaveLocationViewModel @Inject constructor(
         jobSearchLocation?.cancel()
         jobSearchLocation = viewModelScope.launch(Dispatchers.IO) {
             delay(500)
-            Log.e("TAG", nameCity)
-            Log.e("TAG", searchSavedLocationUseCase.searchLocation(nameCity).toString())
             _listSavedForecast.postValue(searchSavedLocationUseCase.searchLocation(nameCity))
         }
     }
@@ -42,9 +37,6 @@ class SearchSaveLocationViewModel @Inject constructor(
             _listSavedForecast.postValue(searchSavedLocationUseCase.getAllLocation())
         }
     }
-
-    fun checkInternetConnection(): Boolean =
-        internetConnection.checkConnection()
 
     fun deleteLocation(location: LocationData){
         viewModelScope.launch {

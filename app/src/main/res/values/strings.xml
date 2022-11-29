@@ -35,4 +35,6 @@
     <string name="ex_step_forecast_date">18:00, 12 Oct</string>
     <string name="ex_current_forecast_description">Overcast clouds</string>
     <string name="description_gps">Current location by GPS</string>
+    <string name="ex_sunrise_time">06:00</string>
+    <string name="ex_sunset_time">20:00</string>
 </resources>

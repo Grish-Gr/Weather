@@ -12,7 +12,9 @@ typealias SuccessAction<T> = (result: ResultOf.Success<T>) -> Unit
 
 open class BaseWeatherViewModel: ViewModel() {
 
-    protected var defaultErrorAction: ErrorAction = { Log.e(this::class.simpleName, "Throw Exception")}
+    protected var defaultErrorAction: ErrorAction = { ex ->
+        Log.e(this::class.simpleName, ex.message.toString())
+    }
 
     protected fun <T> manipulateResult(
         resultOf: ResultOf<T>,
