@@ -28,8 +28,8 @@ data class WeatherEntity(
     @ColumnInfo(name = "feels_like_temp")
     val feelsLikeTemperature: Float,
 
-    @ColumnInfo(name = "direction_wind")
-    val directionWind: String,
+    @ColumnInfo(name = "speed_wind")
+    val speedWinder: Int,
 
     @ColumnInfo(name = "atm_pressure")
     val atmospherePressure: Int,

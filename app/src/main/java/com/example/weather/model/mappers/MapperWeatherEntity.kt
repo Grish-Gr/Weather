@@ -14,7 +14,7 @@ class MapperWeatherEntity: Mapper<Pair<LocationData, CurrentForecastData>, Weath
             dateSave = getDateUTC(forecast.date),
             description = forecast.weather.descriptionWeather,
             feelsLikeTemperature = forecast.temperature.feelsLikeTemperature,
-            directionWind = forecast.weather.windDirection,
+            speedWinder = forecast.weather.speedWinder,
             atmospherePressure = forecast.weather.pressure,
             visibility = forecast.weather.visibility,
             humidity = forecast.weather.humidity,

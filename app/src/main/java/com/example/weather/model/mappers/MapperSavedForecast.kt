@@ -24,7 +24,7 @@ class MapperSavedForecast @Inject constructor(
             humidity = weather.cloudiness,
             cloudiness = weather.cloudiness,
             visibility = weather.visibility,
-            windDirection = weather.directionWind
+            speedWinder = weather.speedWinder
         )
         return SavedForecastData(
             temperature = temperature,

@@ -6,5 +6,5 @@ data class WeatherDetail(
     val humidity: Int,
     val cloudiness: Int,
     val visibility: Int,
-    val windDirection: String
+    val speedWinder: Int
 )

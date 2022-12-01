@@ -44,7 +44,7 @@ class InfoWeatherFragment: Fragment() {
         binding.cloudiness.text = String.format("%s", forecast.weather.cloudiness) + '%'
         binding.atmPressure.text = String.format("%s hPA", forecast.weather.pressure)
         binding.humidity.text = String.format("%s", forecast.weather.humidity) + '%'
-        binding.winder.text = forecast.weather.windDirection.toString()
+        binding.winder.text = String.format("%d m/s", forecast.weather.speedWinder)
         binding.visibilityWeather.text = String.format("%.1f km", (forecast.weather.visibility / 1000.0))
     }
 }

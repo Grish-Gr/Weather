@@ -22,7 +22,7 @@ class MapperCurrentForecast: Mapper<CurrentForecastResponse, CurrentForecastData
             descriptionWeather = source.listWeather.first().description.replaceFirstChar { it.uppercase() },
             cloudiness = source.clouds.cloudiness,
             visibility = source.visibility,
-            windDirection = getWindDirection(source.winder.directionWind)
+            speedWinder = source.winder.speed.toInt()
         )
         val sunTimeData = SunTimeDetail(
             dateSunrise = getDateByUTC(source.sys.timeToSunrise, source.timezone),

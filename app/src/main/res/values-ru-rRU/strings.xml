@@ -4,11 +4,12 @@
     <string name="description_pressure">Атмосферное давление</string>
     <string name="description_cloudiness">Облачность</string>
     <string name="description_visibility">Видимость</string>
-    <string name="description_direction_wind">Напрвление ветра</string>
+    <string name="description_speed_wind">Скорость ветра</string>
     <string name="description_feels_like">Ощущается как</string>
     <string name="ex_location">Екатеринбург</string>
     <string name="nothing_found">Ничего не найдено…</string>
-    <string name="show_more">Показать болше</string>
+    <string name="show_more">Показать больше</string>
     <string name="hide_list">Скрыть</string>
     <string name="description_humidity">Влажность</string>
+    <string name="hint_search_city">Поиск города</string>
 </resources>

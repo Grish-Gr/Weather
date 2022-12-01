@@ -27,7 +27,9 @@ class SavedWeatherRepositoryImpl @Inject constructor(
         return locations.zip(weathers).map { entry ->
             mapperForecast.mapping(Pair(
                 first = entry.first,
-                second = entry.second ?: mapperWeatherEntity.mapping(Pair(LocationData.DefaultLocation, CurrentForecastData.defaultCurrentForecast))))
+                second = entry.second ?: mapperWeatherEntity.mapping(Pair(
+                    LocationData.DefaultLocation,
+                    CurrentForecastData.defaultCurrentForecast))))
         }
     }
 
@@ -39,7 +41,9 @@ class SavedWeatherRepositoryImpl @Inject constructor(
         return locations.zip(weathers).map { entry ->
             mapperForecast.mapping(Pair(
                 first = entry.first,
-                second = entry.second ?: mapperWeatherEntity.mapping(Pair(LocationData.DefaultLocation, CurrentForecastData.defaultCurrentForecast))))
+                second = entry.second ?: mapperWeatherEntity.mapping(Pair(
+                    LocationData.DefaultLocation,
+                    CurrentForecastData.defaultCurrentForecast))))
         }.sortedByDescending { savedForecast -> savedForecast.date }
     }
 

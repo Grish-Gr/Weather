@@ -32,7 +32,7 @@ data class CurrentForecastData(
                 humidity = 0,
                 cloudiness = 0,
                 visibility = 0,
-                windDirection = ""
+                speedWinder = 0
             ),
             date = Date(),
             icons = IconsDetail(urlIconWeatherHeight = "", urlIconWeather = ""),
