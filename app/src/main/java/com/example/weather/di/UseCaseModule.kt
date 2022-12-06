@@ -10,12 +10,14 @@ import com.example.weather.domain.online.GetCurrentWeatherUseCase
 import com.example.weather.domain.online.GetLongIntervalWeatherUseCase
 import com.example.weather.domain.online.GetShortIntervalWeatherUseCase
 import com.example.weather.domain.online.SearchLocationUseCase
+import com.example.weather.domain.utils.AssignWeatherNotificationUseCase
 import com.example.weather.domain.utils.GetLastLocationUseCase
 import com.example.weather.domain.utils.SaveLastLocationUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -80,4 +82,10 @@ class UseCaseModule {
         sharedPreferencesRepository: SharedPreferencesRepository
     ): SaveLastLocationUseCase =
         SaveLastLocationUseCase(sharedPreferencesRepository)
+
+    @Provides
+    fun provideAssignWeatherNotificationUseCase(
+        @ApplicationContext context: Context
+    ): AssignWeatherNotificationUseCase =
+        AssignWeatherNotificationUseCase(context)
 }

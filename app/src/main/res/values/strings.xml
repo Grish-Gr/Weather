@@ -37,4 +37,11 @@
     <string name="description_gps">Current location by GPS</string>
     <string name="ex_sunrise_time">06:00</string>
     <string name="ex_sunset_time">20:00</string>
+
+    <string name="description_current_temp">Current Temperature</string>
+    <string name="description_notification_channel">Current weather</string>
+    <string name="title_dialog_asign_notification">Assign notification?</string>
+    <string name="message_dialog_asign_notification">Previous weather notification will be deleted</string>
+    <string name="possitive_btn_assign_notification">OK</string>
+    <string name="cancel_btn_assign_notification">Cancel</string>
 </resources>

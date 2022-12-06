@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/title_dialog_param_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Parameters Notification"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/hint_interval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Interval"
+        android:textColor="?android:attr/textColorHint"
+        android:layout_margin="8dp"
+        app:layout_constraintTop_toBottomOf="@id/title_dialog_param_notification"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group_interval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="4dp"
+        app:layout_constraintTop_toBottomOf="@id/hint_interval">
+
+        <RadioButton
+            android:id="@+id/interval_3_hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="3 Hour"/>
+
+        <RadioButton
+            android:id="@+id/interval_6_hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:checked="true"
+            android:text="6 Hour"/>
+
+        <RadioButton
+            android:id="@+id/interval_12_hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="12 Hour"/>
+
+        <RadioButton
+            android:id="@+id/interval_24_hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="24 Hour"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/hint_info_in_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Information in notification"
+        android:textColor="?android:attr/textColorHint"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radio_group_interval"/>
+
+
+    <CheckBox
+        android:id="@+id/check_feels_like"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Feels like temperature"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hint_info_in_notification" />
+
+    <CheckBox
+        android:id="@+id/check_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="Description about weather"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/check_feels_like" />
+
+    <Button
+        android:id="@+id/cancel_dialog"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel_btn_assign_notification"
+        android:textColor="?attr/colorOnSecondary"
+        android:layout_margin="8dp"
+        android:backgroundTint="?android:attr/colorBackground"
+        app:layout_constraintEnd_toStartOf="@id/success_dialog"
+        app:layout_constraintTop_toBottomOf="@id/check_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+        android:id="@+id/success_dialog"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Assign"
+        android:layout_margin="8dp"
+        android:backgroundTint="?attr/colorSecondary"
+        app:layout_constraintStart_toEndOf="@id/cancel_dialog"
+        app:layout_constraintTop_toBottomOf="@id/check_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

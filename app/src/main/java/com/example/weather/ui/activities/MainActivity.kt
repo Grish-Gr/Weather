@@ -1,6 +1,7 @@
 package com.example.weather.ui.activities
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
@@ -41,6 +42,10 @@ class MainActivity: BaseActivity() {
     private fun initAction(){
         binding.currentLocation.setOnClickListener {
             openCitySearchActivity()
+        }
+        binding.settings.setOnClickListener{
+            val dialog = NotificationDialogFragment()
+            dialog.show(supportFragmentManager, "Example")
         }
         currentWeatherViewModel.currentForecast.observe(this){
             binding.appBarCurrentForecast.setBackgroundShapeByDate(it.date)
