@@ -9,6 +9,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
+import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.weather.R
 import com.example.weather.domain.online.GetCurrentWeatherUseCase
@@ -18,6 +19,8 @@ import com.example.weather.model.data.LocationData
 import com.example.weather.model.data.detail.TemperatureDetail
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import java.text.SimpleDateFormat
+import java.util.*
 
 @HiltWorker
 class NotificationWorker @AssistedInject constructor(
@@ -50,34 +53,36 @@ class NotificationWorker @AssistedInject constructor(
     private fun getBuilderNotification(forecast: CurrentForecastData, location: LocationData): NotificationCompat.Builder {
         return NotificationCompat.Builder(this.applicationContext, CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle(location.locationName)
+            .setContentTitle(String.format("%s (%s)",
+                location.locationName,
+                SimpleDateFormat("dd MMM HH:mm", Locale.getDefault()).format(forecast.date))
+            )
             .setContentText(getContentTextNotification(forecast))
             .setStyle(
                 NotificationCompat.BigTextStyle().bigText(
-                getContentAllTextNotification(forecast)
-            ))
+                    getContentAllTextNotification(forecast)
+                ))
             .setPriority(NotificationCompat.PRIORITY_LOW)
     }
 
     private fun getContentTextNotification(forecast: CurrentForecastData): String{
         val content = StringBuilder()
         content.append(applicationContext.getText(R.string.description_current_temp))
-        content.append(String.format(": %s", TemperatureDetail.getTemperatureCelsius(forecast.temperature.temperature)))
+        content.append(String.format(": %s", TemperatureDetail
+            .getTemperatureCelsius(forecast.temperature.temperature)))
         return content.toString()
     }
 
     private fun getContentAllTextNotification(forecast: CurrentForecastData): String{
         val content = StringBuilder(getContentTextNotification(forecast))
         if (isFeelsLike){
-            content.append("\n")
-            content.append(applicationContext.getText(R.string.description_feels_like))
+            content.append("\n${applicationContext.getText(R.string.description_feels_like)}")
             content.append(String.format(": %s",
                 TemperatureDetail.getTemperatureCelsius(forecast.temperature.feelsLikeTemperature)
             ))
         }
         if (isDescription){
-            content.append("\n")
-            content.append(forecast.weather.descriptionWeather)
+            content.append("\n${forecast.weather.descriptionWeather}")
         }
         return content.toString();
     }

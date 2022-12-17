@@ -1,8 +1,6 @@
 package com.example.weather.domain.utils
 
-import android.content.ClipDescription
 import android.content.Context
-import android.util.Log
 import androidx.work.*
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.concurrent.TimeUnit
@@ -13,7 +11,6 @@ class AssignWeatherNotificationUseCase @Inject constructor(
 ) {
 
     fun assignNotification(intervalNotificationByMinutes: Long, isFeelsLike: Boolean, isDescription: Boolean){
-        Log.e("TAG", "Assign")
         WorkManager.getInstance(applicationContext).cancelAllWork()
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
@@ -22,7 +19,7 @@ class AssignWeatherNotificationUseCase @Inject constructor(
         val uploadWorkRequest: PeriodicWorkRequest = PeriodicWorkRequest
             .Builder(NotificationWorker::class.java,
                 intervalNotificationByMinutes, TimeUnit.MINUTES,
-                intervalNotificationByMinutes.minus(5), TimeUnit.MINUTES)
+                intervalNotificationByMinutes.minus(15), TimeUnit.MINUTES)
             .setInputData(data)
             .setBackoffCriteria(BackoffPolicy.LINEAR, PeriodicWorkRequest.MIN_BACKOFF_MILLIS, TimeUnit.MILLISECONDS)
             .setConstraints(constraints)

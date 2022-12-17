@@ -14,4 +14,22 @@
     <string name="hint_search_city">Поиск города</string>
     <string name="description_current_temp">Текущая температура</string>
     <string name="description_notification_channel">Текущая погода</string>
+    <string name="interval_3_hour">3 Часа</string>
+    <string name="interval_6_hour">6 Часа</string>
+    <string name="interval_12_hour">12 Часа</string>
+    <string name="hint_interval">Интервал</string>
+    <string name="hint_information_in_notification">Информация в уведомлении</string>
+    <string name="check_feels_like_temperature">Ощущается как (температура)</string>
+    <string name="check_description_about_weather">Описание погоды</string>
+    <string name="assign">Назначить</string>
+    <string name="title_dialog_delete_notification">Удалить все уведомления?</string>
+    <string name="cancel_btn_assign_notification">Отмена</string>
+    <string name="possitive_btn_assign_notification">ОК</string>
+    <string name="message_dialog_change_notification">Все предыдущие назначенные уведомления будут удалены</string>
+    <string name="title_dialog_asign_notification">Назначить уведомление?</string>
+    <string name="interval_never">Никогда</string>
+    <string name="hint_parameters_notification">Параметры уведомления</string>
+    <string name="content_toast_assign_notificatopn">Назначаено уведомление</string>
+    <string name="content_toast_delete_notificatopn">Удалены уведдомления</string>
+    <string name="no_internet_access">Нет интернет соединения</string>
 </resources>

@@ -1,18 +1,16 @@
 package com.example.weather.ui.fragments
 
-import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import androidx.constraintlayout.widget.ConstraintSet
+import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.example.weather.R
 import com.example.weather.databinding.FragmentNotificationBinding
 import com.example.weather.viewmodels.NotificationViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.dialog.MaterialDialogs
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,19 +38,45 @@ class NotificationDialogFragment: DialogFragment() {
             dismiss()
         }
         binding.successDialog.setOnClickListener {
-            MaterialAlertDialogBuilder(this.context as Context)
-                .setTitle(R.string.title_dialog_asign_notification)
-                .setMessage(R.string.message_dialog_asign_notification)
-                .setPositiveButton(R.string.possitive_btn_assign_notification) { _, _ ->
-                    assignNotification()
-                    this.dismiss()
-                }
-                .setNegativeButton(R.string.cancel_btn_assign_notification){ dialog, _ ->
-                    dialog.dismiss()
-                }
-                .show()
+            when (binding.radioGroupInterval.checkedRadioButtonId){
+                binding.intervalNever.id -> showDeleteNotification()
+                else -> showAssignNotification()
+            }
         }
     }
+
+    private fun showAssignNotification(){
+        MaterialAlertDialogBuilder(this.context as Context)
+            .setTitle(R.string.title_dialog_asign_notification)
+            .setMessage(R.string.message_dialog_change_notification)
+            .setPositiveButton(R.string.possitive_btn_assign_notification) { _, _ ->
+                assignNotification()
+                showToast(R.string.content_toast_assign_notificatopn)
+                this.dismiss()
+            }
+            .setNegativeButton(R.string.cancel_btn_assign_notification){ dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun showDeleteNotification(){
+        MaterialAlertDialogBuilder(this.context as Context)
+            .setTitle(R.string.title_dialog_delete_notification)
+            .setMessage(R.string.message_dialog_change_notification)
+            .setPositiveButton(R.string.possitive_btn_assign_notification) { _, _ ->
+                notificationViewModel.deleteAllNotification()
+                showToast(R.string.content_toast_delete_notificatopn)
+                this.dismiss()
+            }
+            .setNegativeButton(R.string.cancel_btn_assign_notification){ dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun showToast(@StringRes resId: Int) =
+        Toast.makeText(this.context, resources.getText(resId), Toast.LENGTH_SHORT).show()
 
     private fun assignNotification(){
         notificationViewModel.assignNotification(
@@ -65,7 +89,6 @@ class NotificationDialogFragment: DialogFragment() {
     private fun getNotificationIntervalByHour(): Int = when(binding.radioGroupInterval.checkedRadioButtonId){
         binding.interval3Hour.id -> 3
         binding.interval6Hour.id -> 6
-        binding.interval12Hour.id -> 12
-        else -> 24
+        else -> 12
     }
 }

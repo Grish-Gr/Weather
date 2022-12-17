@@ -1,47 +1,58 @@
 <resources>
     <string name="app_name">Weather</string>
-    <string name="ex_time">12:00</string>
-    <string name="description_step_weather_image">icon_step_weather</string>
-    <string name="ex_temperature">10.0°ᶜ</string>
-    <string name="ex_min_temperature">9.1°ᶜ</string>
-    <string name="ex_max_temperature">10.0°ᶜ</string>
-    <string name="ex_direction_wind">SSE</string>
-    <string name="ex_pressure">1015 hPa</string>
+    <string name="ex_time" translatable="false">12:00</string>
+    <string name="description_step_weather_image" translatable="false">icon_step_weather</string>
+    <string name="ex_temperature" translatable="false">10.0°ᶜ</string>
+    <string name="ex_min_temperature" translatable="false">9.1°ᶜ</string>
+    <string name="ex_max_temperature" translatable="false">10.0°ᶜ</string>
+    <string name="ex_direction_wind" translatable="false">SSE</string>
+    <string name="ex_pressure" translatable="false">1015 hPa</string>
     <string name="description_pressure">Atmospheric pressure</string>
-    <string name="ex_humidity">64%</string>
-    <string name="ex_cloudiness">90%</string>
+    <string name="ex_humidity" translatable="false">64%</string>
+    <string name="ex_cloudiness" translatable="false">90%</string>
     <string name="description_cloudiness">Cloudiness</string>
     <string name="description_visibility">Visibility</string>
     <string name="description_speed_wind">Speed wind</string>
     <string name="description_feels_like">Feels like</string>
-    <string name="ex_visibility">6 km</string>
+    <string name="ex_visibility" translatable="false">6 km</string>
     <string name="description_humidity">Humidity</string>
     <string name="ex_location">Ekaterinburg</string>
-    <string name="description_image_settings">icon_settings</string>
-    <string name="temp_celsius">%.1f°ᶜ</string>
-    <string name="description_back_to_main_activity">Back to MainActivity</string>
-    <string name="choose_city">Choose City</string>
-    <string name="description_add_location">Add New Location</string>
+    <string name="description_image_settings" translatable="false">icon_settings</string>
+    <string name="temp_celsius" translatable="false">%.1f°ᶜ</string>
+    <string name="description_back_to_main_activity" translatable="false">Back to MainActivity</string>
+    <string name="choose_city" translatable="false">Choose City</string>
+    <string name="description_add_location" translatable="false">Add New Location</string>
 
-    <string name="ex_last_date_save_weather">Last saved date:\n%s</string>
+    <string name="ex_last_date_save_weather" translatable="false">Last saved date:\n%s</string>
     <string name="no_internet_access">No Internet Access</string>
     <string name="nothing_found">Nothing Found…</string>
-    <string name="menu_item_delete_location">Delete Location</string>
-    <string name="menu_item_open_forecast">Open Forecast</string>
     <string name="hint_search_city">Search City</string>
     <string name="show_more">Show More</string>
     <string name="hide_list">Hide</string>
-    <string name="descriotion_swipe_refresh_scroll">Swipe Refresh Scroll</string>
-    <string name="ex_step_forecast_date">18:00, 12 Oct</string>
-    <string name="ex_current_forecast_description">Overcast clouds</string>
-    <string name="description_gps">Current location by GPS</string>
-    <string name="ex_sunrise_time">06:00</string>
-    <string name="ex_sunset_time">20:00</string>
+    <string name="descriotion_swipe_refresh_scroll" translatable="false">Swipe Refresh Scroll</string>
+    <string name="ex_step_forecast_date" translatable="false">18:00, 12 Oct</string>
+    <string name="ex_current_forecast_description" translatable="false">Overcast clouds</string>
+    <string name="description_gps" translatable="false">Current location by GPS</string>
+    <string name="ex_sunrise_time" translatable="false">06:00</string>
+    <string name="ex_sunset_time" translatable="false">20:00</string>
 
     <string name="description_current_temp">Current Temperature</string>
     <string name="description_notification_channel">Current weather</string>
     <string name="title_dialog_asign_notification">Assign notification?</string>
-    <string name="message_dialog_asign_notification">Previous weather notification will be deleted</string>
+    <string name="message_dialog_change_notification">Previous weather notification will be deleted</string>
     <string name="possitive_btn_assign_notification">OK</string>
     <string name="cancel_btn_assign_notification">Cancel</string>
+    <string name="title_dialog_delete_notification">Delete all notification?</string>
+    <string name="interval_never">Never</string>
+    <string name="interval_3_hour">3 Hour</string>
+    <string name="interval_6_hour">6 Hour</string>
+    <string name="interval_12_hour">12 Hour</string>
+    <string name="hint_interval">Interval</string>
+    <string name="hint_information_in_notification">Information in notification</string>
+    <string name="check_feels_like_temperature">Feels like (temperature)</string>
+    <string name="check_description_about_weather">Description about weather</string>
+    <string name="assign">Assign</string>
+    <string name="hint_parameters_notification">Parameters Notification</string>
+    <string name="content_toast_assign_notificatopn">Assigned Notification</string>
+    <string name="content_toast_delete_notificatopn">Deleted Notification</string>
 </resources>
